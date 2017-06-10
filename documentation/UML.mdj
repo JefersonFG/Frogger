@@ -17632,6 +17632,53 @@
 							"templateParameterCompartment": {
 								"$ref": "AAAAAAFckyNQxvRBNxI="
 							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFck+C2oFmmZ7Y=",
+							"_parent": {
+								"$ref": "AAAAAAFcZlTE2pRnwes="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"left": 1784,
+							"top": 872,
+							"width": 144.2998046875,
+							"height": 38,
+							"autoResize": false,
+							"text": "Reutilized class from: https://goo.gl/oCLb5F",
+							"wordWrap": true
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFck+LBrloZGNA=",
+							"_parent": {
+								"$ref": "AAAAAAFcZlTE2pRnwes="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFcjzO1xRxccBE="
+							},
+							"tail": {
+								"$ref": "AAAAAAFck+C2oFmmZ7Y="
+							},
+							"lineStyle": 1,
+							"points": "1791:910;1737:927"
 						}
 					]
 				},
