@@ -1,4 +1,4 @@
-package com.tcp.trabalhopratico;
+package com.tcp.trabalhopratico.View;
 
 /**
  * Created by erick on 13/06/17.
@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class HighscoresScreen extends ScreenAdapter {
-    Frogger game;
+    com.tcp.trabalhopratico.View.Frogger game;
     OrthographicCamera guiCam;
     Rectangle backBounds;
     Vector3 touchPoint;
@@ -21,7 +21,7 @@ public class HighscoresScreen extends ScreenAdapter {
     float xOffset = 0;
     GlyphLayout glyphLayout = new GlyphLayout();
 
-    public HighscoresScreen (Frogger game) {
+    public HighscoresScreen (com.tcp.trabalhopratico.View.Frogger game) {
         this.game = game;
 
         guiCam = new OrthographicCamera(320, 480);
@@ -30,11 +30,11 @@ public class HighscoresScreen extends ScreenAdapter {
         touchPoint = new Vector3();
         highScores = new String[5];
         for (int i = 0; i < 5; i++) {
-            highScores[i] = i + 1 + ". " + Settings.highscores[i];
-            glyphLayout.setText(Assets.font, highScores[i]);
+            highScores[i] = i + 1 + ". " + com.tcp.trabalhopratico.Helper.Settings.highscores[i];
+            glyphLayout.setText(com.tcp.trabalhopratico.Helper.Assets.font, highScores[i]);
             xOffset = Math.max(glyphLayout.width, xOffset);
         }
-        xOffset = 160 - xOffset / 2 + Assets.font.getSpaceWidth() / 2;
+        xOffset = 160 - xOffset / 2 + com.tcp.trabalhopratico.Helper.Assets.font.getSpaceWidth() / 2;
     }
 
     public void update () {
@@ -42,7 +42,6 @@ public class HighscoresScreen extends ScreenAdapter {
             guiCam.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (backBounds.contains(touchPoint.x, touchPoint.y)) {
-                Assets.playSound(Assets.clickSound);
                 game.setScreen(new MainMenuScreen(game));
                 return;
             }
@@ -57,20 +56,20 @@ public class HighscoresScreen extends ScreenAdapter {
         game.batcher.setProjectionMatrix(guiCam.combined);
         game.batcher.disableBlending();
         game.batcher.begin();
-        game.batcher.draw(Assets.backgroundRegion, 0, 0, 320, 480);
+        game.batcher.draw(com.tcp.trabalhopratico.Helper.Assets.backgroundRegion, 0, 0, 320, 480);
         game.batcher.end();
 
         game.batcher.enableBlending();
         game.batcher.begin();
-        game.batcher.draw(Assets.highScoresRegion, 10, 360 - 16, 300, 33);
+        game.batcher.draw(com.tcp.trabalhopratico.Helper.Assets.highScoresRegion, 10, 360 - 16, 300, 33);
 
         float y = 230;
         for (int i = 4; i >= 0; i--) {
-            Assets.font.draw(game.batcher, highScores[i], xOffset, y);
-            y += Assets.font.getLineHeight();
+            com.tcp.trabalhopratico.Helper.Assets.font.draw(game.batcher, highScores[i], xOffset, y);
+            y += com.tcp.trabalhopratico.Helper.Assets.font.getLineHeight();
         }
 
-        game.batcher.draw(Assets.arrow, 0, 0, 64, 64);
+        game.batcher.draw(com.tcp.trabalhopratico.Helper.Assets.arrow, 0, 0, 64, 64);
         game.batcher.end();
     }
 
