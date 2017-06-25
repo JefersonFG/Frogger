@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.tcp.trabalhopratico.Helper.Assets;
 
 public class HighscoresScreen extends ScreenAdapter {
     com.tcp.trabalhopratico.View.Frogger game;
@@ -56,7 +57,7 @@ public class HighscoresScreen extends ScreenAdapter {
         game.batcher.setProjectionMatrix(guiCam.combined);
         game.batcher.disableBlending();
         game.batcher.begin();
-        game.batcher.draw(com.tcp.trabalhopratico.Helper.Assets.backgroundRegion, 0, 0, 320, 480);
+        game.batcher.draw(Assets.background, 0, 0, 320, 480);
         game.batcher.end();
 
         game.batcher.enableBlending();
