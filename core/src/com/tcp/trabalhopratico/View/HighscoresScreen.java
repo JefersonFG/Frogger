@@ -1,9 +1,5 @@
 package com.tcp.trabalhopratico.View;
 
-/**
- * Created by erick on 13/06/17.
- */
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,44 +8,58 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.tcp.trabalhopratico.Helper.Assets;
+import com.tcp.trabalhopratico.Helper.Settings;
 
-public class HighscoresScreen extends ScreenAdapter {
-    com.tcp.trabalhopratico.View.Frogger game;
-    OrthographicCamera guiCam;
-    Rectangle backBounds;
-    Vector3 touchPoint;
-    String[] highScores;
-    float xOffset = 0;
-    GlyphLayout glyphLayout = new GlyphLayout();
+/**
+ * Classe responsável por exibir a tela de pontuação do jogo, exibindo as cinco maiores pontuações.
+ */
+class HighscoresScreen extends ScreenAdapter {
+    private Frogger game;
+    private OrthographicCamera guiCam;
+    private Rectangle backBounds;
+    private Vector3 touchPoint;
+    private String[] highScores;
+    private float xOffset = 0;
 
-    public HighscoresScreen (com.tcp.trabalhopratico.View.Frogger game) {
+    /**
+     * Inicia as variáveis.
+     * @param game Objeto principal do jogo.
+     */
+    HighscoresScreen (Frogger game) {
         this.game = game;
 
-        guiCam = new OrthographicCamera(320, 480);
-        guiCam.position.set(320 / 2, 480 / 2, 0);
+        GlyphLayout glyphLayout = new GlyphLayout();
+
+        guiCam = new OrthographicCamera(Frogger.SCREEN_WIDTH, Frogger.SCREEN_HEIGHT);
+        guiCam.position.set(Frogger.SCREEN_WIDTH / 2, Frogger.SCREEN_HEIGHT / 2, 0);
         backBounds = new Rectangle(0, 0, 64, 64);
         touchPoint = new Vector3();
         highScores = new String[5];
         for (int i = 0; i < 5; i++) {
-            highScores[i] = i + 1 + ". " + com.tcp.trabalhopratico.Helper.Settings.highscores[i];
-            glyphLayout.setText(com.tcp.trabalhopratico.Helper.Assets.font, highScores[i]);
+            highScores[i] = i + 1 + ". " + Settings.highscores[i];
+            glyphLayout.setText(Assets.font, highScores[i]);
             xOffset = Math.max(glyphLayout.width, xOffset);
         }
-        xOffset = 160 - xOffset / 2 + com.tcp.trabalhopratico.Helper.Assets.font.getSpaceWidth() / 2;
+        xOffset = 160 - xOffset / 2 + Assets.font.getSpaceWidth() / 2;
     }
 
-    public void update () {
+    /**
+     * Trata cliques na tela para retornar à tela principal quando necessário.
+     */
+    private void update () {
         if (Gdx.input.justTouched()) {
             guiCam.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (backBounds.contains(touchPoint.x, touchPoint.y)) {
                 game.setScreen(new MainMenuScreen(game));
-                return;
             }
         }
     }
 
-    public void draw () {
+    /**
+     * Atualiza as imagens na tela.
+     */
+    private void draw () {
         GL20 gl = Gdx.gl;
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         guiCam.update();
@@ -57,23 +67,27 @@ public class HighscoresScreen extends ScreenAdapter {
         game.batcher.setProjectionMatrix(guiCam.combined);
         game.batcher.disableBlending();
         game.batcher.begin();
-        game.batcher.draw(Assets.background, 0, 0, 320, 480);
+        game.batcher.draw(Assets.background, 0, 0, Frogger.SCREEN_WIDTH, Frogger.SCREEN_HEIGHT);
         game.batcher.end();
 
         game.batcher.enableBlending();
         game.batcher.begin();
-        game.batcher.draw(com.tcp.trabalhopratico.Helper.Assets.highScoresRegion, 10, 360 - 16, 300, 33);
+        game.batcher.draw(Assets.highScoresRegion, 10, 380, 300, 33);
 
-        float y = 230;
+        float y = 150;
         for (int i = 4; i >= 0; i--) {
-            com.tcp.trabalhopratico.Helper.Assets.font.draw(game.batcher, highScores[i], xOffset, y);
-            y += com.tcp.trabalhopratico.Helper.Assets.font.getLineHeight();
+            Assets.font.draw(game.batcher, highScores[i], xOffset, y);
+            y += Assets.font.getLineHeight();
         }
 
-        game.batcher.draw(com.tcp.trabalhopratico.Helper.Assets.arrow, 0, 0, 64, 64);
+        game.batcher.draw(Assets.arrow, 0, 0, 64, 64);
         game.batcher.end();
     }
 
+    /**
+     * Chama os métodos de atualização da tela e verificação de input.
+     * @param delta Tempo em segundos desde a última renderização.
+     */
     @Override
     public void render (float delta) {
         update();
