@@ -7,9 +7,12 @@ import com.tcp.trabalhopratico.Helper.Settings;
 
 /**
  * Classe que inicia o software. Responsável por carregar os recursos e iniciar
- * a tela principal.
+ * a tela principal e contém o tamanho padrão da tela.
  */
 public class Frogger extends Game {
+	static final int SCREEN_WIDTH = 320;
+	static final int SCREEN_HEIGHT = 480;
+
 	SpriteBatch batcher;
 
 	/**
