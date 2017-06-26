@@ -42,9 +42,8 @@ class MainMenuScreen extends ScreenAdapter {
             guiCam.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (newGameBounds.contains(touchPoint.x, touchPoint.y)) {
-                // game.setScreen(new GameScreen(game));
-            }
-            if (highscoresBounds.contains(touchPoint.x, touchPoint.y)) {
+                game.setScreen(new GameScreen(game));
+            } else if (highscoresBounds.contains(touchPoint.x, touchPoint.y)) {
                 game.setScreen(new com.tcp.trabalhopratico.View.HighscoresScreen(game));
             }
         }
