@@ -27,6 +27,7 @@ class GameScreen extends ScreenAdapter {
     private Rectangle pauseBounds;
     private Rectangle resumeBounds;
     private Rectangle quitBounds;
+    private int lastScore;
     private String scoreString;
 
     private GlyphLayout glyphLayout = new GlyphLayout();
