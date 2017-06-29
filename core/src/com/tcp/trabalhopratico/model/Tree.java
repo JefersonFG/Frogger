@@ -8,7 +8,7 @@ public class Tree extends Obstacle {
     private static final float TREE_HEIGHT = 0.8f;
 
     /**
-     * Construtor que recebe a posição da árvore
+     * Construtor que recebe a posição da árvore.
      * @param x Posição da árvore no eixo x.
      * @param y Posição da árvore no eixo y.
      */
