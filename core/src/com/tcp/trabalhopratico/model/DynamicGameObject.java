@@ -10,8 +10,8 @@ public class DynamicGameObject extends GameObject {
     private final Vector2 velocity;
 
     /**
-     * Getter de velocity
-     * @return Velocidade do objeto
+     * Getter de velocity.
+     * @return Velocidade do objeto.
      */
     public Vector2 getVelocity() {
         return velocity;
