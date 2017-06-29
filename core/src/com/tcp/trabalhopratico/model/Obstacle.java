@@ -6,7 +6,7 @@ package com.tcp.trabalhopratico.model;
  */
 public class Obstacle extends GameObject {
     /**
-     * Implementação básica do construtor que chama o da superclasse
+     * Implementação básica do construtor que chama o da superclassex
      * @param x Posição do objeto no eixo x.
      * @param y Posição do objeto no eixo y.
      * @param width Largura do objeto.
