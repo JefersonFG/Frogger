@@ -1,9 +1,9 @@
-package com.tcp.trabalhopratico.View;
+package com.tcp.trabalhopratico.view;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Game;
-import com.tcp.trabalhopratico.Helper.Assets;
-import com.tcp.trabalhopratico.Helper.Settings;
+import com.tcp.trabalhopratico.helper.Assets;
+import com.tcp.trabalhopratico.helper.Settings;
 
 /**
  * Classe que inicia o software. Responsável por carregar os recursos e iniciar
