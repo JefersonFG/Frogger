@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
  * Superclasse da hierarquia para objetos dinâmicos, que se movem sozinhos.
  * A única nova propriedade é a velocidade do objeto.
  */
-public class DynamicGameObject extends GameObject {
+public abstract class DynamicGameObject extends GameObject {
     private final Vector2 velocity;
 
     /**

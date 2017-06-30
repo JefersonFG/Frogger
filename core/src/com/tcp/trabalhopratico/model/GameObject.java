@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  * Superclasse da hierarquia do Model, todos os objetos do jogo devem herdar de GameObject.
  * A classe contém campos de posição no espaço 2D e de bordas do objeto.
  */
-public class GameObject {
+public abstract class GameObject {
     private final Vector2 position;
     private final Rectangle bounds;
 
