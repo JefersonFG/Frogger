@@ -9,8 +9,8 @@ public class Lake extends GameObject {
 
     /**
      * Construtor que recebe a posição do lago.
-     * @param x Posição da árvore no eixo x.
-     * @param y Posição da árvore no eixo y.
+     * @param x Posição do lago no eixo x.
+     * @param y Posição do lago no eixo y.
      */
     public Lake (float x, float y) {
         super(x, y, LAKE_WIDTH, LAKE_HEIGHT);
