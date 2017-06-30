@@ -2,7 +2,7 @@ package com.tcp.trabalhopratico.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.tcp.trabalhopratico.View.Frogger;
+import com.tcp.trabalhopratico.view.Frogger;
 
 /**
  * Classe responsável por iniciar o jogo no desktop.
