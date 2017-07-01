@@ -1,6 +1,5 @@
 package com.tcp.trabalhopratico.controller;
 
-import com.badlogic.gdx.utils.Timer;
 import com.tcp.trabalhopratico.model.Automobile;
 import com.tcp.trabalhopratico.model.Frog;
 import com.tcp.trabalhopratico.model.Grass;
@@ -14,12 +13,12 @@ import java.util.List;
 public class World {
     private static final float WORLD_WIDTH = 10;
     private static final float WORLD_HEIGHT = 48;
-    private static final int WORLD_STATE_RUNNING = 0;
-    private static final int WORLD_STATE_GAME_OVER = 1;
+    public static final int WORLD_STATE_RUNNING = 0;
+    public static final int WORLD_STATE_GAME_OVER = 1;
 
-    int state;
-    int score;
-    int distanceSoFar;
+    private int state;
+    private int score;
+    private int distanceSoFar;
 
     final Frog frog;
     final List<Automobile> automobiles;
@@ -39,13 +38,22 @@ public class World {
         this.state = WORLD_STATE_RUNNING;
         this.score = 0;
         this.distanceSoFar = 0;
+    }
 
-        Timer.schedule(new Timer.Task() {
-            @Override
-            public void run () {
-                updateTimer();
-            }
-        }, 1, 1);
+    public int getFrogLives() {
+        return frog.getLives();
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getDistanceSoFar() {
+        return distanceSoFar;
     }
 
     private void generateLevel () {
@@ -83,10 +91,6 @@ public class World {
 
         castle = new Castle(WORLD_WIDTH / 2, y);
         */
-    }
-
-    public void updateTimer () {
-        // TODO Implementar updateTimer
     }
 
     public void update (float deltaTime) {

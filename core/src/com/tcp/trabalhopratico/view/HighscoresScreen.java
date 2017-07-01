@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.tcp.trabalhopratico.helper.Assets;
-import com.tcp.trabalhopratico.helper.Settings;
+import com.tcp.trabalhopratico.helper.Persistence;
 
 /**
  * Classe responsável por exibir a tela de pontuação do jogo, exibindo as cinco maiores pontuações.
@@ -36,7 +36,7 @@ class HighscoresScreen extends ScreenAdapter {
         touchPoint = new Vector3();
         highScores = new String[5];
         for (int i = 0; i < 5; i++) {
-            highScores[i] = i + 1 + ". " + Settings.highscores[i];
+            highScores[i] = i + 1 + ". " + Persistence.highscores[i];
             glyphLayout.setText(Assets.font, highScores[i]);
             xOffset = Math.max(glyphLayout.width, xOffset);
         }
