@@ -1,4 +1,4 @@
-package com.tcp.trabalhopratico.controller;
+package com.tcp.trabalhopratico.view;
 
 import com.badlogic.gdx.input.GestureDetector;
 
@@ -6,11 +6,11 @@ import com.badlogic.gdx.input.GestureDetector;
  * Classe que implementa um detector de gestos para o aplicativo, permitindo que o usuário
  * realize swipes para mover o sapo. A classe foi obtida no seguinte endereço: https://goo.gl/oCLb5F
  */
-public class SimpleDirectionGestureDetector extends GestureDetector {
+class SimpleDirectionGestureDetector extends GestureDetector {
     /**
      * Interface que deve ser implementada para realizar os movimentos nas quatro direções.
      */
-    public interface DirectionListener {
+    interface DirectionListener {
         void onLeft();
 
         void onRight();
@@ -24,7 +24,7 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
      * Construtor que recebe uma implementação da interface DirectionListener.
      * @param directionListener Implementação da interface DirectionListener.
      */
-    public SimpleDirectionGestureDetector(DirectionListener directionListener) {
+    SimpleDirectionGestureDetector(DirectionListener directionListener) {
         super(new DirectionGestureListener(directionListener));
     }
 
@@ -36,9 +36,9 @@ public class SimpleDirectionGestureDetector extends GestureDetector {
 
         /**
          * Construtor que recebe uma implementação da interface DirectionListener.
-         * @param directionListener
+         * @param directionListener Implementação da interface DirectionListener.
          */
-        public DirectionGestureListener(DirectionListener directionListener){
+        DirectionGestureListener(DirectionListener directionListener){
             this.directionListener = directionListener;
         }
 

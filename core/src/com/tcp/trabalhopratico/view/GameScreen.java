@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Timer;
 import com.tcp.trabalhopratico.controller.World;
 import com.tcp.trabalhopratico.controller.WorldRenderer;
 import com.tcp.trabalhopratico.helper.Assets;
+import com.tcp.trabalhopratico.helper.Settings;
 
 /**
  * Classe que representa a tela de jogo. Contém instâncias do Controller e exibe ao usuário
@@ -21,6 +23,8 @@ class GameScreen extends ScreenAdapter {
     private static final int GAME_RUNNING = 1;
     private static final int GAME_PAUSED = 2;
     private static final int GAME_OVER = 3;
+
+    private static final int MAX_TIME = 60;
 
     private Frogger game;
 
@@ -42,7 +46,8 @@ class GameScreen extends ScreenAdapter {
     private GlyphLayout glyphLayout = new GlyphLayout();
 
     /**
-     * Construtor que inicia o jogo, instanciando o controller
+     * Construtor que inicia o jogo, instanciando o controller, iniciando o timer e o processador
+     * de gestos na tela (para movimento do sapo).
      * @param game Referência ao objeto de jogo para renderização de elementos na tela.
      */
     GameScreen (Frogger game) {
@@ -57,9 +62,39 @@ class GameScreen extends ScreenAdapter {
         pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
         resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
-        scoreString = "SCORE: 0";
-        livesString = "LIVES: 0";
-        timeString = "TIME: 0";
+        lastScore = world.getScore();
+        lastLives = world.getFrogLives();
+        lastTime = MAX_TIME;
+        scoreString = "SCORE: " + lastScore;
+        livesString = "LIVES: " + lastLives;
+        timeString = "TIME: " + lastTime;
+
+        Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector
+                (new SimpleDirectionGestureDetector.DirectionListener() {
+            @Override
+            public void onUp() {
+                //TODO Implementar movimento para cima do sapo
+            }
+            @Override
+            public void onRight() {
+                //TODO Implementar movimento para a direita do sapo
+            }
+            @Override
+            public void onLeft() {
+                //TODO Implementar movimento para a esquerda do sapo
+            }
+            @Override
+            public void onDown() {
+                //TODO Implementar movimento para baixo do sapo
+            }
+        }));
+
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run () {
+                updateTimer();
+            }
+        }, 1, 1);
     }
 
     /**
@@ -86,18 +121,30 @@ class GameScreen extends ScreenAdapter {
     }
 
     /**
+     * Atualiza o tempo restante na tela e finaliza o jogo quando o tempo chega a zero.
+     */
+    private void updateTimer () {
+        if (state != GAME_RUNNING)
+            return;
+        if (--lastTime > 0)
+            timeString = "TIME: " + lastTime;
+        else
+            finishGame();
+    }
+
+    /**
      * Atualiza o jogo durante o estado READY. Quando o usuário clica na tela o
      * estado é alterado para RUNNING.
      */
     private void updateReady () {
-        if (Gdx.input.justTouched()) {
+        if (Gdx.input.justTouched())
             state = GAME_RUNNING;
-        }
     }
 
     /**
      * Atualiza o jogo no estado RUNNING. É realizada uma chamada para o método de atualização
-     * do controller e verificado o estado resultante do jogo.
+     * do controller e verificado o estado resultante do jogo, além de atualizado número de vidas
+     * restantes na tela.
      * @param deltaTime Tempo em segundos desde a última atualização.
      */
     private void updateRunning (float deltaTime) {
@@ -110,37 +157,15 @@ class GameScreen extends ScreenAdapter {
             }
         }
 
-        /*
+        world.update(deltaTime);
 
-        Application.ApplicationType appType = Gdx.app.getType();
-
-        // should work also with Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)
-        if (appType == Application.ApplicationType.Android || appType == Application.ApplicationType.iOS) {
-            world.update(deltaTime, Gdx.input.getAccelerometerX());
-        } else {
-            float accel = 0;
-            if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) accel = 5f;
-            if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) accel = -5f;
-            world.update(deltaTime, accel);
-        }
-        if (world.score != lastScore) {
-            lastScore = world.score;
-            scoreString = "SCORE: " + lastScore;
-        }
-        if (world.state == World.WORLD_STATE_NEXT_LEVEL) {
-            game.setScreen(new WinScreen(game));
-        }
-        if (world.state == World.WORLD_STATE_GAME_OVER) {
-            state = GAME_OVER;
-            if (lastScore >= Settings.highscores[4])
-                scoreString = "NEW HIGHSCORE: " + lastScore;
-            else
-                scoreString = "SCORE: " + lastScore;
-            Settings.addScore(lastScore);
-            Settings.save();
+        if (world.getFrogLives() != lastLives) {
+            lastLives = world.getFrogLives();
+            livesString = "LIVES: " + lastLives;
         }
 
-        */
+        if (world.getState() == World.WORLD_STATE_GAME_OVER)
+            finishGame();
     }
 
     /**
@@ -233,6 +258,36 @@ class GameScreen extends ScreenAdapter {
         game.batcher.draw(Assets.gameOver, 160 - 160 / 2, 240 - 96 / 2, 160, 96);
         glyphLayout.setText(Assets.font, scoreString);
         Assets.font.draw(game.batcher, scoreString, 160 - glyphLayout.width / 2, 480 - 20);
+    }
+
+    /**
+     * Finaliza o jogo calculando e salvando a pontuação e mudando o estado para GAME_OVER.
+     */
+    private void finishGame() {
+        state = GAME_OVER;
+        determineFinalScore();
+        saveScore();
+    }
+
+    /**
+     * Determina a pontuação final baseado na distância percorrida, nas vidas e no tempo restantes.
+     */
+    private void determineFinalScore() {
+        lastScore = lastLives * 10 + lastTime + world.getDistanceSoFar() * 2;
+    }
+
+    /**
+     * Verifica se a pontuação do usuário é maior do que a dos recordes e se for salva em disco.
+     * Também prepara a string para exibição ao usuário.
+     */
+    private void saveScore() {
+        if (lastScore >= Settings.highscores[4]) {
+            scoreString = "NEW HIGHSCORE: " + lastScore;
+            Settings.addScore(lastScore);
+            Settings.save();
+        } else {
+            scoreString = "FINAL SCORE: " + lastScore;
+        }
     }
 
     /**
