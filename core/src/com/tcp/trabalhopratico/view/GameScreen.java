@@ -62,7 +62,7 @@ class GameScreen extends ScreenAdapter {
         pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
         resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
-        lastScore = world.getScore();
+        lastScore = 0;
         lastLives = world.getFrogLives();
         lastTime = MAX_TIME;
         scoreString = "SCORE: " + lastScore;
