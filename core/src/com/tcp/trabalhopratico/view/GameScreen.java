@@ -54,14 +54,14 @@ class GameScreen extends ScreenAdapter {
         this.game = game;
 
         state = GAME_READY;
-        guiCam = new OrthographicCamera(320, 480);
-        guiCam.position.set(320 / 2, 480 / 2, 0);
+        guiCam = new OrthographicCamera(Frogger.SCREEN_WIDTH, Frogger.SCREEN_HEIGHT);
+        guiCam.position.set(Frogger.SCREEN_WIDTH / 2, Frogger.SCREEN_HEIGHT / 2, 0);
         touchPoint = new Vector3();
         world = new World();
         renderer = new WorldRenderer(game.batcher, world);
-        pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
-        resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
-        quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
+        pauseBounds = new Rectangle(Frogger.SCREEN_WIDTH - 64, Frogger.SCREEN_HEIGHT - 64, 64, 64);
+        resumeBounds = new Rectangle(Frogger.SCREEN_WIDTH / 2 - 96, Frogger.SCREEN_HEIGHT / 2, 192, 36);
+        quitBounds = new Rectangle(Frogger.SCREEN_WIDTH / 2 - 96, Frogger.SCREEN_HEIGHT / 2 - 36, 192, 36);
         lastScore = 0;
         lastLives = world.getFrogLives();
         lastTime = MAX_TIME;
@@ -229,16 +229,18 @@ class GameScreen extends ScreenAdapter {
      * Atualiza o conteúdo na tela no estado READY, que é a palavra READY sobre o fundo do jogo.
      */
     private void presentReady () {
-        game.batcher.draw(Assets.ready, 160 - 192 / 2, 240 - 32 / 2, 192, 32);
+        game.batcher.draw(Assets.ready, Frogger.SCREEN_WIDTH / 2 - 192 / 2,
+                Frogger.SCREEN_HEIGHT / 2 - 32 / 2, 192, 32);
     }
 
     /**
      * Atualiza o conteúdo na tela no estado RUNNING, que são os indicadores de vidas e tempo restantes.
      */
     private void presentRunning () {
-        game.batcher.draw(Assets.pause, 320 - 55, 480 - 55, 55, 55);
-        Assets.font.draw(game.batcher, livesString, 10, 480 - 10);
-        Assets.font.draw(game.batcher, timeString, 10, 480 - 30);
+        game.batcher.draw(Assets.headerBackground, 0, Frogger.SCREEN_HEIGHT - 48, Frogger.SCREEN_WIDTH, 48);
+        game.batcher.draw(Assets.pause, Frogger.SCREEN_WIDTH - 45, Frogger.SCREEN_HEIGHT - 45, 45, 45);
+        Assets.font.draw(game.batcher, livesString, 10, Frogger.SCREEN_HEIGHT - 5);
+        Assets.font.draw(game.batcher, timeString, 10, Frogger.SCREEN_HEIGHT - 25);
     }
 
     /**
@@ -246,18 +248,22 @@ class GameScreen extends ScreenAdapter {
      * e os indicadores de vidas e tempo restantes.
      */
     private void presentPaused () {
-        game.batcher.draw(Assets.pauseMenu, 160 - 192 / 2, 240 - 96 / 2, 192, 96);
-        Assets.font.draw(game.batcher, livesString, 10, 480 - 10);
-        Assets.font.draw(game.batcher, timeString, 10, 480 - 30);
+        game.batcher.draw(Assets.headerBackground, 0, Frogger.SCREEN_HEIGHT - 48, Frogger.SCREEN_WIDTH, 48);
+        game.batcher.draw(Assets.pauseMenu, Frogger.SCREEN_WIDTH / 2 - 192 / 2,
+                Frogger.SCREEN_HEIGHT / 2 - 96 / 2, 192, 96);
+        Assets.font.draw(game.batcher, livesString, 10, Frogger.SCREEN_HEIGHT - 5);
+        Assets.font.draw(game.batcher, timeString, 10, Frogger.SCREEN_HEIGHT - 25);
     }
 
     /**
      * Atualiza o conteúdo na tela no estado GAMEOVER, que é o texto GAMEOVER e a pontuação final.
      */
     private void presentGameOver () {
-        game.batcher.draw(Assets.gameOver, 160 - 160 / 2, 240 - 96 / 2, 160, 96);
+        game.batcher.draw(Assets.gameOver, Frogger.SCREEN_WIDTH / 4,
+                Frogger.SCREEN_HEIGHT / 2 - 96 / 2, 160, 96);
         glyphLayout.setText(Assets.font, scoreString);
-        Assets.font.draw(game.batcher, scoreString, 160 - glyphLayout.width / 2, 480 - 20);
+        Assets.font.draw(game.batcher, scoreString,
+                Frogger.SCREEN_WIDTH / 2 - glyphLayout.width / 2, Frogger.SCREEN_HEIGHT - 20);
     }
 
     /**
