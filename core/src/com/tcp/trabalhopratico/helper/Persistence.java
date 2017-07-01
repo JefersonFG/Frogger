@@ -9,7 +9,7 @@ import com.badlogic.gdx.files.FileHandle;
  */
 public class Persistence {
     public static int[] highscores = new int[] {80, 70, 60, 50, 40};
-    public final static String file = ".frogger";
+    public final static String file = "Highscores.frogger";
 
     /**
      * Carrega o ranking de pontuação do jogo do disco.
