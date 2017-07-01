@@ -2,22 +2,36 @@ package com.tcp.trabalhopratico.controller;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * Classe responsável por atualizar os gráficos dos elementos de jogo na tela.
+ */
 public class WorldRenderer {
-    private static final float FRUSTUM_WIDTH = 10;
-    private static final float FRUSTUM_HEIGHT = 15;
     private World world;
     private SpriteBatch batch;
 
+    /**
+     * Construtor que recebe o objeto de renderização de elementos e uma referência ao
+     * objeto World que tem referências aos elementos de jogo.
+     * @param batch Objeto de renderização de elementos na tela.
+     * @param world Objeto com referência aos demais objetos de jogo.
+     */
     public WorldRenderer (SpriteBatch batch, World world) {
         this.world = world;
         this.batch = batch;
     }
 
+    /**
+     * Método que realiza a renderização dos objetos de plano de fundo e demais objetos de jogo,
+     * nessa ordem.
+     */
     public void render () {
         renderBackground();
         renderObjects();
     }
 
+    /**
+     * Renderiza objetos do primeiro plano, que são o sapo, os automóveis e os obstáculos.
+     */
     private void renderObjects () {
         batch.enableBlending();
         batch.begin();
@@ -27,6 +41,9 @@ public class WorldRenderer {
         batch.end();
     }
 
+    /**
+     * Renderiza objetos de plano de fundo, que são as estradas, os canteiros e o lago.
+     */
     private void renderBackground () {
         batch.disableBlending();
         batch.begin();
@@ -38,6 +55,9 @@ public class WorldRenderer {
         batch.end();
     }
 
+    /**
+     * Renderiza o sapo na tela.
+     */
     private void renderFrog() {
         /*
         TextureRegion keyFrame;
@@ -61,6 +81,9 @@ public class WorldRenderer {
         */
     }
 
+    /**
+     * Renderiza os automóveis na tela.
+     */
     private void renderAutomobiles() {
         /*
         int len = world.platforms.size();
@@ -76,6 +99,9 @@ public class WorldRenderer {
         */
     }
 
+    /**
+     * Renderiza os obstáculos na tela.
+     */
     private void renderObstacles() {
         /*
         int len = world.springs.size();
@@ -93,6 +119,9 @@ public class WorldRenderer {
         */
     }
 
+    /**
+     * Renderiza as estradas na tela.
+     */
     private void renderRoads() {
         /*
         int len = world.squirrels.size();
@@ -108,10 +137,16 @@ public class WorldRenderer {
         */
     }
 
+    /**
+     * Renderiza os canteiros na tela.
+     */
     private void renderGrass() {
         //
     }
 
+    /**
+     * Renderiza o lago na tela.
+     */
     private void renderLake() {
         /*
         Castle castle = world.castle;
