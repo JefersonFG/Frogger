@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * Classe responsável por atualizar os gráficos dos elementos de jogo na tela.
  */
 public class WorldRenderer {
-    private static final float FRUSTUM_WIDTH = 10;
-    private static final float FRUSTUM_HEIGHT = 15;
     private World world;
     private SpriteBatch batch;
 

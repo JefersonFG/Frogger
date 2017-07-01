@@ -16,8 +16,8 @@ import java.util.List;
  * para todos os objetos em jogo e controla a distância percorrida em direção ao objetivo.
  */
 public class World {
-    private static final float WORLD_WIDTH = 10;
-    private static final float WORLD_HEIGHT = 48;
+    static final float WORLD_WIDTH = 10;
+    static final float WORLD_HEIGHT = 10;
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_GAME_OVER = 1;
 
@@ -35,12 +35,12 @@ public class World {
      * Construtor que inicializa todos os objetos de jogo.
      */
     public World() {
-        this.frog = new Frog(5, 0);
+        this.frog = new Frog(WORLD_WIDTH / 2, 0);
         this.automobiles = new ArrayList<Automobile>();
         this.obstacles = new ArrayList<Obstacle>();
         this.roads = new ArrayList<Road>();
         this.grass = new ArrayList<Grass>();
-        this.lake = new Lake(0, WORLD_HEIGHT - 0.8f);
+        this.lake = new Lake(0, WORLD_WIDTH - 2);
 
         this.state = WORLD_STATE_RUNNING;
         this.distanceSoFar = 0;
