@@ -3,7 +3,7 @@ package com.tcp.trabalhopratico.view;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Game;
 import com.tcp.trabalhopratico.helper.Assets;
-import com.tcp.trabalhopratico.helper.Settings;
+import com.tcp.trabalhopratico.helper.Persistence;
 
 /**
  * Classe que inicia o software. Responsável por carregar os recursos e iniciar
@@ -21,7 +21,7 @@ public class Frogger extends Game {
 	@Override
 	public void create() {
 		batcher = new SpriteBatch();
-		Settings.load();
+		Persistence.load();
 		Assets.load();
 		setScreen(new MainMenuScreen(this));
 	}

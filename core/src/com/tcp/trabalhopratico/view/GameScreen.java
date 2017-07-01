@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.tcp.trabalhopratico.controller.World;
 import com.tcp.trabalhopratico.controller.WorldRenderer;
 import com.tcp.trabalhopratico.helper.Assets;
-import com.tcp.trabalhopratico.helper.Settings;
+import com.tcp.trabalhopratico.helper.Persistence;
 
 /**
  * Classe que representa a tela de jogo. Contém instâncias do Controller e exibe ao usuário
@@ -281,10 +281,10 @@ class GameScreen extends ScreenAdapter {
      * Também prepara a string para exibição ao usuário.
      */
     private void saveScore() {
-        if (lastScore >= Settings.highscores[4]) {
+        if (lastScore >= Persistence.highscores[4]) {
             scoreString = "NEW HIGHSCORE: " + lastScore;
-            Settings.addScore(lastScore);
-            Settings.save();
+            Persistence.addScore(lastScore);
+            Persistence.save();
         } else {
             scoreString = "FINAL SCORE: " + lastScore;
         }
