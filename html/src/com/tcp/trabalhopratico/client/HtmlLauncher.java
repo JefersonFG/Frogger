@@ -3,7 +3,7 @@ package com.tcp.trabalhopratico.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.tcp.trabalhopratico.View.Frogger;
+import com.tcp.trabalhopratico.view.Frogger;
 
 /**
  * Classe responsável por iniciar o jogo no navegador no modo Html.

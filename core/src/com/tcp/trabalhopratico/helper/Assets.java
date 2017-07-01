@@ -1,4 +1,4 @@
-package com.tcp.trabalhopratico.Helper;
+package com.tcp.trabalhopratico.helper;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

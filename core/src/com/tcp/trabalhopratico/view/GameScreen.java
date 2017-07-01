@@ -1,15 +1,13 @@
-package com.tcp.trabalhopratico.View;
+package com.tcp.trabalhopratico.view;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.tcp.trabalhopratico.Helper.Assets;
+import com.tcp.trabalhopratico.helper.Assets;
 
 class GameScreen extends ScreenAdapter {
     private static final int GAME_READY = 0;
