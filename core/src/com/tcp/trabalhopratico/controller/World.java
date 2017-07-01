@@ -10,14 +10,18 @@ import com.tcp.trabalhopratico.model.Road;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que gerencia o fluxo do jogo. É responsável por criar o ambiente do jogo, atualizar os
+ * estados dos objetos e verificar colisões, finalizando o jogo se necessário. Guarda referências
+ * para todos os objetos em jogo e controla a distância percorrida em direção ao objetivo.
+ */
 public class World {
-    private static final float WORLD_WIDTH = 10;
-    private static final float WORLD_HEIGHT = 48;
+    static final float WORLD_WIDTH = 10;
+    static final float WORLD_HEIGHT = 10;
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_GAME_OVER = 1;
 
     private int state;
-    private int score;
     private int distanceSoFar;
 
     final Frog frog;
@@ -27,35 +31,48 @@ public class World {
     final List<Grass> grass;
     final Lake lake;
 
+    /**
+     * Construtor que inicializa todos os objetos de jogo.
+     */
     public World() {
-        this.frog = new Frog(5, 0);
+        this.frog = new Frog(WORLD_WIDTH / 2, 0);
         this.automobiles = new ArrayList<Automobile>();
         this.obstacles = new ArrayList<Obstacle>();
         this.roads = new ArrayList<Road>();
         this.grass = new ArrayList<Grass>();
-        this.lake = new Lake(0, WORLD_HEIGHT - 0.8f);
+        this.lake = new Lake(0, WORLD_WIDTH - 2);
 
         this.state = WORLD_STATE_RUNNING;
-        this.score = 0;
         this.distanceSoFar = 0;
     }
 
+    /**
+     * Getter de Frog.lives.
+     * @return Vidas restantes do sapo.
+     */
     public int getFrogLives() {
         return frog.getLives();
     }
 
+    /**
+     * Getter de state.
+     * @return Estado de World.
+     */
     public int getState() {
         return state;
     }
 
-    public int getScore() {
-        return score;
-    }
-
+    /**
+     * Getter de distanceSoFar.
+     * @return Distância percorrida em direção ao objetivo.
+     */
     public int getDistanceSoFar() {
         return distanceSoFar;
     }
 
+    /**
+     * Método que inicializa o ambiente dispondo os objetos de jogo na tela.
+     */
     private void generateLevel () {
         /*
         float y = Platform.PLATFORM_HEIGHT / 2;
@@ -93,6 +110,10 @@ public class World {
         */
     }
 
+    /**
+     * Atualiza o estado dos objetos.
+     * @param deltaTime Tempo em segundos desde a última atualização.
+     */
     public void update (float deltaTime) {
         updateFrog();
         updateAutomobiles(deltaTime);
@@ -101,6 +122,9 @@ public class World {
         checkGameOver();
     }
 
+    /**
+     * Atualiza o estado do spo.
+     */
     private void updateFrog() {
         /*
         if (bob.state != Bob.BOB_STATE_HIT && bob.position.y <= 0.5f) bob.hitPlatform();
@@ -110,6 +134,10 @@ public class World {
         */
     }
 
+    /**
+     * Atualiza o estados dos automóveis, que se movem na tela com o passar do tempo.
+     * @param deltaTime Tempo em segundos desde a última atualização.
+     */
     private void updateAutomobiles(float deltaTime) {
         /*
         int len = platforms.size();
@@ -124,11 +152,17 @@ public class World {
         */
     }
 
+    /**
+     * Verifica se não ocorreram colisões do sapo com obstáculos ou automóveis.
+     */
     private void checkCollisions () {
         checkAutomobileCollisions();
         checkObstacleCollision();
     }
 
+    /**
+     * Verifica se houve colisão do sapo com um automóvel.
+     */
     private void checkAutomobileCollisions() {
         /*
         if (bob.velocity.y > 0) return;
@@ -150,6 +184,9 @@ public class World {
         */
     }
 
+    /**
+     * Verifica se houve colisão do sapo com um obstáculo.
+     */
     private void checkObstacleCollision() {
         /*
         int len = squirrels.size();
@@ -163,6 +200,9 @@ public class World {
         */
     }
 
+    /**
+     * Verifica se o jogo deve ser finalizado.
+     */
     private void checkGameOver () {
         /*
         if (heightSoFar - 7.5f > bob.position.y) {
