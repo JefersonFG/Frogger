@@ -12034,7 +12034,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Settings",
+											"text": "Persistence",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -22690,7 +22690,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFck8IpuBov050="
 							},
-							"name": "Settings",
+							"name": "Persistence",
 							"visibility": "public",
 							"attributes": [
 								{

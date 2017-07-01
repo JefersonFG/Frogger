@@ -7,7 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
  * Classe que gerencia persistência de dados, em especial o ranking de pontuação do jogo.
  * A classe cria uma string padrão de pontuações para preencher a tela de rankings.
  */
-public class Settings {
+public class Persistence {
     public static int[] highscores = new int[] {80, 70, 60, 50, 40};
     public final static String file = ".frogger";
 
