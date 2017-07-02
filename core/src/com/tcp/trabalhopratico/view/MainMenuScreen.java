@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.tcp.trabalhopratico.helper.Assets;
-import com.tcp.trabalhopratico.helper.Settings;
+import com.tcp.trabalhopratico.helper.Persistence;
 
 /**
  * Classe responsável por exibir a tela principal do jogo, de onde o usuário pode iniciar
@@ -29,8 +29,8 @@ class MainMenuScreen extends ScreenAdapter {
 
         guiCam = new OrthographicCamera(Frogger.SCREEN_WIDTH, Frogger.SCREEN_HEIGHT);
         guiCam.position.set(Frogger.SCREEN_WIDTH / 2, Frogger.SCREEN_HEIGHT / 2, 0);
-        newGameBounds = new Rectangle(160 - 150, 200 + 18, 300, 36);
-        highscoresBounds = new Rectangle(160 - 150, 200 - 18, 300, 36);
+        newGameBounds = new Rectangle(Frogger.SCREEN_WIDTH / 2 - 150, 200 + 18, 300, 36);
+        highscoresBounds = new Rectangle(Frogger.SCREEN_WIDTH / 2 - 150, 200 - 18, 300, 36);
         touchPoint = new Vector3();
     }
 
@@ -66,7 +66,8 @@ class MainMenuScreen extends ScreenAdapter {
 
         game.batcher.enableBlending();
         game.batcher.begin();
-        game.batcher.draw(com.tcp.trabalhopratico.helper.Assets.logo, 160 - 274 / 2, Frogger.SCREEN_HEIGHT - 10 - 142, 274, 142);
+        game.batcher.draw(com.tcp.trabalhopratico.helper.Assets.logo,
+                Frogger.SCREEN_WIDTH / 2 - 274 / 2, Frogger.SCREEN_HEIGHT - 10 - 142, 274, 142);
         game.batcher.draw(com.tcp.trabalhopratico.helper.Assets.mainMenu, 10, 200 - 110 / 2, 300, 110);
         game.batcher.end();
     }
@@ -86,6 +87,6 @@ class MainMenuScreen extends ScreenAdapter {
      */
     @Override
     public void pause () {
-        Settings.save();
+        Persistence.save();
     }
 }

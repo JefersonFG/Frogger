@@ -1,45 +1,52 @@
 package com.tcp.trabalhopratico.helper;
 
-/**
- * Created by erick on 12/06/17.
- */
-
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
-public class Settings {
-    public static boolean soundEnabled = true;
-    public static int[] highscores = new int[] {100, 80, 50, 30, 10};
-    public final static String file = ".frogger";
+/**
+ * Classe que gerencia persistência de dados, em especial o ranking de pontuação do jogo.
+ * A classe cria uma string padrão de pontuações para preencher a tela de rankings.
+ */
+public class Persistence {
+    public static int[] highscores = new int[] {80, 70, 60, 50, 40};
+    public final static String file = "Highscores.frogger";
 
+    /**
+     * Carrega o ranking de pontuação do jogo do disco.
+     */
     public static void load () {
         try {
             FileHandle filehandle = Gdx.files.external(file);
 
             String[] strings = filehandle.readString().split("\n");
 
-            soundEnabled = Boolean.parseBoolean(strings[0]);
             for (int i = 0; i < 5; i++) {
                 highscores[i] = Integer.parseInt(strings[i+1]);
             }
         } catch (Throwable e) {
-            // :( It's ok we have defaults
+            // TODO Tratar erro ao carregar a pontuação
         }
     }
 
+    /**
+     * Salva o ranking de pontuação do jogo no disco.
+     */
     public static void save () {
         try {
             FileHandle filehandle = Gdx.files.external(file);
 
-            filehandle.writeString(Boolean.toString(soundEnabled)+"\n", false);
             for (int i = 0; i < 5; i++) {
                 filehandle.writeString(Integer.toString(highscores[i])+"\n", true);
             }
         } catch (Throwable e) {
+            // TODO Tratar erro ao salvar a pontuação
         }
     }
 
+    /**
+     * Adiciona uma pontuação no ranking e rearranja o array em ordem decrescente.
+     * @param score Pontuação a ser adicionada no ranking.
+     */
     public static void addScore (int score) {
         for (int i = 0; i < 5; i++) {
             if (highscores[i] < score) {
