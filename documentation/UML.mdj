@@ -8067,7 +8067,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "-MOTORCYCLE_WIDTH: float",
+											"text": "+MOTORCYCLE_WIDTH: float",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -8096,7 +8096,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "-MOTORCYCLE_HEIGHT: float",
+											"text": "+MOTORCYCLE_HEIGHT: float",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -12668,7 +12668,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "-CAR_WIDTH: float",
+											"text": "+CAR_WIDTH: float",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -12697,7 +12697,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "-CAR_HEIGHT: float",
+											"text": "+CAR_HEIGHT: float",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -13108,7 +13108,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "-TRUCK_WIDTH: float",
+											"text": "+TRUCK_WIDTH: float",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -13137,7 +13137,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "-TRUCK_HEIGHT: float",
+											"text": "+TRUCK_HEIGHT: float",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -19621,7 +19621,7 @@
 								"$ref": "AAAAAAFcj0MtZDkZt3g="
 							},
 							"name": "MOTORCYCLE_WIDTH",
-							"visibility": "private",
+							"visibility": "public",
 							"isStatic": true,
 							"isLeaf": false,
 							"type": "float",
@@ -19639,7 +19639,7 @@
 								"$ref": "AAAAAAFcj0MtZDkZt3g="
 							},
 							"name": "MOTORCYCLE_HEIGHT",
-							"visibility": "private",
+							"visibility": "public",
 							"isStatic": true,
 							"isLeaf": false,
 							"type": "float",
@@ -22050,7 +22050,7 @@
 										"$ref": "AAAAAAFcj0Lq+DfWNiA="
 									},
 									"name": "CAR_WIDTH",
-									"visibility": "private",
+									"visibility": "public",
 									"isStatic": true,
 									"isLeaf": false,
 									"type": "float",
@@ -22068,7 +22068,7 @@
 										"$ref": "AAAAAAFcj0Lq+DfWNiA="
 									},
 									"name": "CAR_HEIGHT",
-									"visibility": "private",
+									"visibility": "public",
 									"isStatic": true,
 									"isLeaf": false,
 									"type": "float",
@@ -22217,7 +22217,7 @@
 										"$ref": "AAAAAAFcj0N9tTp7xGQ="
 									},
 									"name": "TRUCK_WIDTH",
-									"visibility": "private",
+									"visibility": "public",
 									"isStatic": true,
 									"isLeaf": false,
 									"type": "float",
@@ -22235,7 +22235,7 @@
 										"$ref": "AAAAAAFcj0N9tTp7xGQ="
 									},
 									"name": "TRUCK_HEIGHT",
-									"visibility": "private",
+									"visibility": "public",
 									"isStatic": true,
 									"isLeaf": false,
 									"type": "float",
