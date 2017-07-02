@@ -30,7 +30,6 @@ public class Assets {
     public static Texture road;
     public static Texture grass;
     public static Texture lake;
-    public static Texture heart;
     public static Texture headerBackground;
 
     public static BitmapFont font;
@@ -69,7 +68,6 @@ public class Assets {
         road = loadTexture("road.png");
         grass = loadTexture("grass.png");
         lake = loadTexture("lake.png");
-        heart = loadTexture("heart.png");
         headerBackground = loadTexture("header background.png");
 
         font = new BitmapFont(Gdx.files.internal("font.fnt"), Gdx.files.internal("font.png"), false);
