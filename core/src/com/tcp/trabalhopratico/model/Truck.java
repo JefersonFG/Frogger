@@ -20,15 +20,6 @@ public class Truck extends Automobile {
     public Truck (float x, float y) {
         super(x, y, TRUCK_WIDTH, TRUCK_HEIGHT);
         getVelocity().set(TRUCK_VELOCITY, 0);
-    }
-
-    /**
-     * Método que atualiza a posição do caminhão na tela.
-     * @param deltaTime Tempo em segundos desde a última atualização.
-     */
-    @Override
-    public void update (float deltaTime) {
-        // TODO Refatorar constantes
-        getPosition().x -= 71.5f * TRUCK_VELOCITY * deltaTime;
+        movementDirection = DIRECTION_LEFT;
     }
 }

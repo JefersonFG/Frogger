@@ -17,15 +17,6 @@ public class Motorcycle extends Automobile {
     public Motorcycle (float x, float y) {
         super(x, y, MOTORCYCLE_WIDTH, MOTORCYCLE_HEIGHT);
         getVelocity().set(MOTORCYCLE_VELOCITY, 0);
-    }
-
-    /**
-     * Método que atualiza a posição da motocicleta na tela.
-     * @param deltaTime Tempo em segundos desde a última atualização.
-     */
-    @Override
-    public void update (float deltaTime) {
-        // TODO Refatorar constantes
-        getPosition().x -= 71.5f * MOTORCYCLE_VELOCITY * deltaTime;
+        movementDirection = DIRECTION_LEFT;
     }
 }
