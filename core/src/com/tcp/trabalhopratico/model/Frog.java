@@ -95,16 +95,16 @@ public class Frog extends GameObject {
      * atualizando a última posição do sapo como sendo a atual.
      */
     public void confirmMove() {
-        lastPosition.x = getLastPosition().x;
-        lastPosition.y = getLastPosition().y;
+        lastPosition.x = getPosition().x;
+        lastPosition.y = getPosition().y;
     }
 
     /**
      * Método que desfaz o movimento do sapo em caso de colisão com um obstáculo.
      */
     public void undoMove() {
-        getLastPosition().x = lastPosition.x;
-        getLastPosition().y = lastPosition.y;
+        getPosition().x = lastPosition.x;
+        getPosition().y = lastPosition.y;
     }
 
     /**
