@@ -128,7 +128,7 @@ public class World {
     public void update (float deltaTime) {
         updateAutomobiles(deltaTime);
         if (frog.getState() != Frog.FROG_STATE_HIT)
-            checkCollisions();
+            checkAutomobileCollisions();
         checkGameOver();
     }
 
@@ -223,7 +223,7 @@ public class World {
     /**
      * Verifica se o sapo está no mesmo ponto que o automóvel.
      * @param automobile Automóvel a verificar se está no mesmo ponto que o sapo.
-     * @return True caso estejam na mesma posição, falso do contrário.
+     * @return True caso estejam na mesma posição, false do contrário.
      */
     private boolean isFrogAndAutomobileOnSameSpot(Automobile automobile) {
         return ((frog.getPosition().x >= automobile.getPosition().x &&
@@ -238,16 +238,42 @@ public class World {
      * Verifica se houve colisão do sapo com um obstáculo.
      */
     private void checkObstacleCollision() {
-        /*
-        int len = squirrels.size();
+        int len = obstacles.size();
+        boolean hitObstacle = false;
+
         for (int i = 0; i < len; i++) {
-            Squirrel squirrel = squirrels.get(i);
-            if (squirrel.bounds.overlaps(bob.bounds)) {
-                bob.hitSquirrel();
-                listener.hit();
+            Obstacle obstacle = obstacles.get(i);
+            if (isFrogAndObstacleOnSameSpot(obstacle)) {
+                frog.undoMove();
+                hitObstacle = true;
             }
         }
-        */
+
+        if (!hitObstacle) {
+            updateDistanceSoFar();
+            frog.confirmMove();
+        }
+    }
+
+    /**
+     * Verifica se o sapo está no mesmo ponto que o obstáculo.
+     * @param obstacle Obstáculo a verificar se está no mesmo ponto que o sapo.
+     * @return True caso estejam na mesma posição, false do contrário.
+     */
+    private boolean isFrogAndObstacleOnSameSpot(Obstacle obstacle) {
+        return (frog.getPosition().x == obstacle.getPosition().x)
+                && (frog.getPosition().y == obstacle.getPosition().y);
+    }
+
+    /**
+     * Função que verifica se o sapo está se movendo em direção ao objetivo ou na direção oposta
+     * e registra no campo de distância percorrida, para posterior contagem de pontos.
+     */
+    private void updateDistanceSoFar() {
+        if (frog.getPosition().y > frog.getLastPosition().y)
+            distanceSoFar++;
+        else if (frog.getPosition().y < frog.getLastPosition().y)
+            distanceSoFar--;
     }
 
     /**
