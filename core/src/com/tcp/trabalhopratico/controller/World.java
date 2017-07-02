@@ -1,11 +1,15 @@
 package com.tcp.trabalhopratico.controller;
 
 import com.tcp.trabalhopratico.model.Automobile;
+import com.tcp.trabalhopratico.model.Car;
 import com.tcp.trabalhopratico.model.Frog;
 import com.tcp.trabalhopratico.model.Grass;
 import com.tcp.trabalhopratico.model.Lake;
+import com.tcp.trabalhopratico.model.Motorcycle;
 import com.tcp.trabalhopratico.model.Obstacle;
 import com.tcp.trabalhopratico.model.Road;
+import com.tcp.trabalhopratico.model.Tree;
+import com.tcp.trabalhopratico.model.Truck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +101,24 @@ public class World {
         roads.add(road3);
         roads.add(road4);
         roads.add(road5);
+
+        Tree tree1 = new Tree(HORIZONTAL_SECTION_SIZE * 2, 3 * VERTICAL_SECTION_SIZE);
+        Tree tree2 = new Tree(HORIZONTAL_SECTION_SIZE * 4, 5 * VERTICAL_SECTION_SIZE);
+
+        obstacles.add(tree1);
+        obstacles.add(tree2);
+
+        Car car1 = new Car(0, VERTICAL_SECTION_SIZE);
+        Car car2 = new Car(0, 6 * VERTICAL_SECTION_SIZE);
+        Truck truck1 = new Truck(HORIZONTAL_SECTION_SIZE * 4, 2 * VERTICAL_SECTION_SIZE);
+        Truck truck2 = new Truck(HORIZONTAL_SECTION_SIZE * 4, 4 * VERTICAL_SECTION_SIZE);
+        Motorcycle motorcycle = new Motorcycle(HORIZONTAL_SECTION_SIZE * 4, 7 * VERTICAL_SECTION_SIZE);
+
+        automobiles.add(car1);
+        automobiles.add(car2);
+        automobiles.add(truck1);
+        automobiles.add(truck2);
+        automobiles.add(motorcycle);
     }
 
     /**
