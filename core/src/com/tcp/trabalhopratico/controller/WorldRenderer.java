@@ -3,6 +3,7 @@ package com.tcp.trabalhopratico.controller;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tcp.trabalhopratico.helper.Assets;
+import com.tcp.trabalhopratico.model.Frog;
 import com.tcp.trabalhopratico.model.Grass;
 import com.tcp.trabalhopratico.model.Lake;
 import com.tcp.trabalhopratico.model.Road;
@@ -62,6 +63,8 @@ public class WorldRenderer {
      * Renderiza o sapo na tela.
      */
     private void renderFrog() {
+        Frog frog = world.frog;
+        batch.draw(Assets.frog, frog.getPosition().x, frog.getPosition().y);
         /*
         TextureRegion keyFrame;
         switch (world.bob.state) {
