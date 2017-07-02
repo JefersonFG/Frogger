@@ -4,8 +4,8 @@ package com.tcp.trabalhopratico.model;
  * Classe que representa um lago na tela. Contém as dimensões do lago.
  */
 public class Lake extends GameObject {
-    private static final float LAKE_WIDTH = 0.8f;
-    private static final float LAKE_HEIGHT = 0.8f;
+    private static final float LAKE_WIDTH = 320;
+    private static final float LAKE_HEIGHT = 48;
 
     /**
      * Construtor que recebe a posição do lago.

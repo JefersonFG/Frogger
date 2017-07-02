@@ -1,11 +1,15 @@
 package com.tcp.trabalhopratico.controller;
 
 import com.tcp.trabalhopratico.model.Automobile;
+import com.tcp.trabalhopratico.model.Car;
 import com.tcp.trabalhopratico.model.Frog;
 import com.tcp.trabalhopratico.model.Grass;
 import com.tcp.trabalhopratico.model.Lake;
+import com.tcp.trabalhopratico.model.Motorcycle;
 import com.tcp.trabalhopratico.model.Obstacle;
 import com.tcp.trabalhopratico.model.Road;
+import com.tcp.trabalhopratico.model.Tree;
+import com.tcp.trabalhopratico.model.Truck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +20,10 @@ import java.util.List;
  * para todos os objetos em jogo e controla a distância percorrida em direção ao objetivo.
  */
 public class World {
-    static final float WORLD_WIDTH = 10;
-    static final float WORLD_HEIGHT = 10;
+    private static final int WORLD_WIDTH = 320;
+    private static final int WORLD_HEIGHT = 480;
+    private static final int HORIZONTAL_SECTION_SIZE = WORLD_WIDTH / 5;
+    private static final int VERTICAL_SECTION_SIZE = WORLD_HEIGHT / 10;
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_GAME_OVER = 1;
 
@@ -35,15 +41,17 @@ public class World {
      * Construtor que inicializa todos os objetos de jogo.
      */
     public World() {
-        this.frog = new Frog(WORLD_WIDTH / 2, 0);
+        this.frog = new Frog(HORIZONTAL_SECTION_SIZE * 2, 0);
         this.automobiles = new ArrayList<Automobile>();
         this.obstacles = new ArrayList<Obstacle>();
         this.roads = new ArrayList<Road>();
         this.grass = new ArrayList<Grass>();
-        this.lake = new Lake(0, WORLD_WIDTH - 2);
+        this.lake = new Lake(0, 8 * VERTICAL_SECTION_SIZE);
 
         this.state = WORLD_STATE_RUNNING;
         this.distanceSoFar = 0;
+
+        generateLevel();
     }
 
     /**
@@ -74,40 +82,43 @@ public class World {
      * Método que inicializa o ambiente dispondo os objetos de jogo na tela.
      */
     private void generateLevel () {
-        /*
-        float y = Platform.PLATFORM_HEIGHT / 2;
-        float maxJumpHeight = Bob.BOB_JUMP_VELOCITY * Bob.BOB_JUMP_VELOCITY / (2 * -gravity.y);
-        while (y < WORLD_HEIGHT - WORLD_WIDTH / 2) {
-            int type = rand.nextFloat() > 0.8f ? Platform.PLATFORM_TYPE_MOVING : Platform.PLATFORM_TYPE_STATIC;
-            float x = rand.nextFloat() * (WORLD_WIDTH - Platform.PLATFORM_WIDTH) + Platform.PLATFORM_WIDTH / 2;
+        Grass grass1 = new Grass(0, 0);
+        Grass grass2 = new Grass(0, 3 * VERTICAL_SECTION_SIZE);
+        Grass grass3 = new Grass(0, 5 * VERTICAL_SECTION_SIZE);
 
-            Platform platform = new Platform(type, x, y);
-            platforms.add(platform);
+        grass.add(grass1);
+        grass.add(grass2);
+        grass.add(grass3);
 
-            if (rand.nextFloat() > 0.9f && type != Platform.PLATFORM_TYPE_MOVING) {
-                Spring spring = new Spring(platform.position.x, platform.position.y + Platform.PLATFORM_HEIGHT / 2
-                        + Spring.SPRING_HEIGHT / 2);
-                springs.add(spring);
-            }
+        Road road1 = new Road(0, VERTICAL_SECTION_SIZE);
+        Road road2 = new Road(0, 2 * VERTICAL_SECTION_SIZE);
+        Road road3 = new Road(0, 4 * VERTICAL_SECTION_SIZE);
+        Road road4 = new Road(0, 6 * VERTICAL_SECTION_SIZE);
+        Road road5 = new Road(0, 7 * VERTICAL_SECTION_SIZE);
 
-            if (y > WORLD_HEIGHT / 3 && rand.nextFloat() > 0.8f) {
-                Squirrel squirrel = new Squirrel(platform.position.x + rand.nextFloat(), platform.position.y
-                        + Squirrel.SQUIRREL_HEIGHT + rand.nextFloat() * 2);
-                squirrels.add(squirrel);
-            }
+        roads.add(road1);
+        roads.add(road2);
+        roads.add(road3);
+        roads.add(road4);
+        roads.add(road5);
 
-            if (rand.nextFloat() > 0.6f) {
-                Coin coin = new Coin(platform.position.x + rand.nextFloat(), platform.position.y + Coin.COIN_HEIGHT
-                        + rand.nextFloat() * 3);
-                coins.add(coin);
-            }
+        Tree tree1 = new Tree(HORIZONTAL_SECTION_SIZE * 2, 3 * VERTICAL_SECTION_SIZE);
+        Tree tree2 = new Tree(HORIZONTAL_SECTION_SIZE * 4, 5 * VERTICAL_SECTION_SIZE);
 
-            y += (maxJumpHeight - 0.5f);
-            y -= rand.nextFloat() * (maxJumpHeight / 3);
-        }
+        obstacles.add(tree1);
+        obstacles.add(tree2);
 
-        castle = new Castle(WORLD_WIDTH / 2, y);
-        */
+        Car car1 = new Car(0, VERTICAL_SECTION_SIZE);
+        Car car2 = new Car(0, 6 * VERTICAL_SECTION_SIZE);
+        Truck truck1 = new Truck(WORLD_WIDTH - Truck.TRUCK_WIDTH, 2 * VERTICAL_SECTION_SIZE);
+        Truck truck2 = new Truck(WORLD_WIDTH - Truck.TRUCK_WIDTH, 4 * VERTICAL_SECTION_SIZE);
+        Motorcycle motorcycle = new Motorcycle(WORLD_WIDTH - Motorcycle.MOTORCYCLE_WIDTH, 7 * VERTICAL_SECTION_SIZE);
+
+        automobiles.add(car1);
+        automobiles.add(car2);
+        automobiles.add(truck1);
+        automobiles.add(truck2);
+        automobiles.add(motorcycle);
     }
 
     /**
