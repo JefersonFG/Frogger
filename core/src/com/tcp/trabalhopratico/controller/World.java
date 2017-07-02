@@ -213,10 +213,7 @@ public class World {
                 frog.setLives(frog.getLives() - 1);
 
                 if (frog.getLives() > 0) {
-                    frog.getPosition().x = HORIZONTAL_SECTION_SIZE * 2;
-                    frog.getPosition().y = 0;
-                    frog.getLastPosition().x = HORIZONTAL_SECTION_SIZE * 2;
-                    frog.getLastPosition().y = 0;
+                    frog.resetPosition(HORIZONTAL_SECTION_SIZE * 2, 0);
                     distanceSoFar = 0;
                 } else {
                     frog.hitAutomobile();

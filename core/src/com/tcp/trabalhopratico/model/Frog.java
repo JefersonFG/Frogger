@@ -108,6 +108,18 @@ public class Frog extends GameObject {
     }
 
     /**
+     * Função que reseta a posição do sapo, usada para quando ele perde uma vida.
+     * @param x Nova posição no eixo x.
+     * @param y Nova posição no eixo y.
+     */
+    public void resetPosition(float x, float y) {
+        getPosition().x = x;
+        getPosition().y = y;
+        lastPosition.x = x;
+        lastPosition.y = y;
+    }
+
+    /**
      * Método que atualiza o estado do sapo em caso de colisão com um automóvel.
      */
     public void hitAutomobile() {
