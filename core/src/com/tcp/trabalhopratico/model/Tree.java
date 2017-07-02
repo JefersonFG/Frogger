@@ -4,8 +4,8 @@ package com.tcp.trabalhopratico.model;
  * Classe que representa uma árvore na tela. Contém as dimensões da árvore.
  */
 public class Tree extends Obstacle {
-    private static final float TREE_WIDTH = 0.8f;
-    private static final float TREE_HEIGHT = 0.8f;
+    private static final float TREE_WIDTH = 64;
+    private static final float TREE_HEIGHT = 48;
 
     /**
      * Construtor que recebe a posição da árvore.
