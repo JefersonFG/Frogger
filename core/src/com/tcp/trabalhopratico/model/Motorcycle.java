@@ -25,6 +25,7 @@ public class Motorcycle extends Automobile {
      */
     @Override
     public void update (float deltaTime) {
-        // TODO Implementar update de Motorcycle
+        // TODO Refatorar constantes
+        getPosition().x -= 71.5f * MOTORCYCLE_VELOCITY * deltaTime;
     }
 }
