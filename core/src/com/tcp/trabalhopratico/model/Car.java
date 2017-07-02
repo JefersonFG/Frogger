@@ -17,14 +17,6 @@ public class Car extends Automobile {
     public Car (float x, float y) {
         super(x, y, CAR_WIDTH, CAR_HEIGHT);
         getVelocity().set(CAR_VELOCITY, 0);
-    }
-
-    /**
-     * Método que atualiza a posição do carro na tela.
-     * @param deltaTime Tempo em segundos desde a última atualização.
-     */
-    @Override
-    public void update (float deltaTime) {
-        // TODO Implementar update de Car
+        movementDirection = DIRECTION_RIGHT;
     }
 }
