@@ -126,23 +126,10 @@ public class World {
      * @param deltaTime Tempo em segundos desde a última atualização.
      */
     public void update (float deltaTime) {
-        updateFrog();
         updateAutomobiles(deltaTime);
         if (frog.getState() != Frog.FROG_STATE_HIT)
             checkCollisions();
         checkGameOver();
-    }
-
-    /**
-     * Atualiza o estado do spo.
-     */
-    private void updateFrog() {
-        /*
-        if (bob.state != Bob.BOB_STATE_HIT && bob.position.y <= 0.5f) bob.hitPlatform();
-        if (bob.state != Bob.BOB_STATE_HIT) bob.velocity.x = -accelX / 10 * Bob.BOB_MOVE_VELOCITY;
-        bob.update(deltaTime);
-        heightSoFar = Math.max(bob.position.y, heightSoFar);
-        */
     }
 
     /**
@@ -161,6 +148,38 @@ public class World {
             }
         }
         */
+    }
+
+    /**
+     * Método que move o sapo para cima e verifica colisões, se houver colisão com um automóvel
+     * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
+     */
+    public void moveFrogUp() {
+        //TODO Implementar movimento para cima do sapo
+    }
+
+    /**
+     * Método que move o sapo para baixo e verifica colisões, se houver colisão com um automóvel
+     * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
+     */
+    public void moveFrogDown() {
+        //TODO Implementar movimento para baixo do sapo
+    }
+
+    /**
+     * Método que move o sapo para a direita e verifica colisões, se houver colisão com um automóvel
+     * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
+     */
+    public void moveFrogRight() {
+        //TODO Implementar movimento para a direita do sapo
+    }
+
+    /**
+     * Método que move o sapo para a esquerda e verifica colisões, se houver colisão com um automóvel
+     * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
+     */
+    public void moveFrogLeft() {
+        //TODO Implementar movimento para a esquerda do sapo
     }
 
     /**

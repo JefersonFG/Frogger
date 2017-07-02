@@ -81,25 +81,25 @@ class GameScreen extends ScreenAdapter {
             public void onUp() {
                 if (state != GAME_RUNNING)
                     return;
-                //TODO Implementar movimento para cima do sapo
+                world.moveFrogUp();
             }
             @Override
             public void onDown() {
                 if (state != GAME_RUNNING)
                     return;
-                //TODO Implementar movimento para baixo do sapo
+                world.moveFrogDown();
             }
             @Override
             public void onRight() {
                 if (state != GAME_RUNNING)
                     return;
-                //TODO Implementar movimento para a direita do sapo
+                world.moveFrogRight();
             }
             @Override
             public void onLeft() {
                 if (state != GAME_RUNNING)
                     return;
-                //TODO Implementar movimento para a esquerda do sapo
+                world.moveFrogLeft();
             }
         })));
 
@@ -115,22 +115,22 @@ class GameScreen extends ScreenAdapter {
                     case (Input.Keys.W):
                     case (Input.Keys.DPAD_UP):
                         result = true;
-                        //TODO Implementar movimento para cima do sapo
+                        world.moveFrogUp();
                         break;
                     case (Input.Keys.S):
                     case (Input.Keys.DPAD_DOWN):
                         result = true;
-                        //TODO Implementar movimento para baixo do sapo
+                        world.moveFrogDown();
                         break;
                     case (Input.Keys.D):
                     case (Input.Keys.DPAD_RIGHT):
                         result = true;
-                        //TODO Implementar movimento para a direita do sapo
+                        world.moveFrogRight();
                         break;
                     case (Input.Keys.A):
                     case (Input.Keys.DPAD_LEFT):
                         result = true;
-                        //TODO Implementar movimento para a esquerda do sapo
+                        world.moveFrogLeft();
                         break;
                 }
 
