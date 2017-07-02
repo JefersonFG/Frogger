@@ -156,6 +156,7 @@ public class World {
      */
     public void moveFrogUp() {
         frog.moveUp();
+        checkCollisions();
     }
 
     /**
@@ -164,6 +165,7 @@ public class World {
      */
     public void moveFrogDown() {
         frog.moveDown();
+        checkCollisions();
     }
 
     /**
@@ -172,6 +174,7 @@ public class World {
      */
     public void moveFrogRight() {
         frog.moveRight();
+        checkCollisions();
     }
 
     /**
@@ -180,6 +183,7 @@ public class World {
      */
     public void moveFrogLeft() {
         frog.moveLeft();
+        checkCollisions();
     }
 
     /**
@@ -191,27 +195,43 @@ public class World {
     }
 
     /**
-     * Verifica se houve colisão do sapo com um automóvel.
+     * Verifica se houve colisão do sapo com um automóvel. Se houver, diminui uma vida do sapo.
+     * Se o sapo ainda tiver vidas sobrando, reinicia sua posição. Caso não tenha mais vidas
+     * sobrando finaliza o jogo.
      */
     private void checkAutomobileCollisions() {
-        /*
-        if (bob.velocity.y > 0) return;
+        int len = automobiles.size();
 
-        int len = platforms.size();
         for (int i = 0; i < len; i++) {
-            Platform platform = platforms.get(i);
-            if (bob.position.y > platform.position.y) {
-                if (bob.bounds.overlaps(platform.bounds)) {
-                    bob.hitPlatform();
-                    listener.jump();
-                    if (rand.nextFloat() > 0.5f) {
-                        platform.pulverize();
-                    }
-                    break;
+            Automobile automobile = automobiles.get(i);
+            if (isFrogAndAutomobileOnSameSpot(automobile)) {
+                frog.setLives(frog.getLives() - 1);
+
+                if (frog.getLives() > 0) {
+                    frog.getPosition().x = HORIZONTAL_SECTION_SIZE * 2;
+                    frog.getPosition().y = 0;
+                    frog.getLastPosition().x = HORIZONTAL_SECTION_SIZE * 2;
+                    frog.getLastPosition().y = 0;
+                } else {
+                    frog.hitAutomobile();
+                    state = WORLD_STATE_GAME_OVER;
                 }
             }
         }
-        */
+    }
+
+    /**
+     * Verifica se o sapo está no mesmo ponto que o automóvel.
+     * @param automobile Automóvel a verificar se está no mesmo ponto que o sapo.
+     * @return True caso estejam na mesma posição, falso do contrário.
+     */
+    private boolean isFrogAndAutomobileOnSameSpot(Automobile automobile) {
+        return ((frog.getPosition().x >= automobile.getPosition().x &&
+                frog.getPosition().x <= (automobile.getPosition().x + automobile.getBounds().width)) ||
+                ((frog.getPosition().x + frog.getBounds().width) >= automobile.getPosition().x &&
+                (frog.getPosition().x + frog.getBounds().width) <=
+                        (automobile.getPosition().x + automobile.getBounds().width)))
+                && (frog.getPosition().y == automobile.getPosition().y);
     }
 
     /**
