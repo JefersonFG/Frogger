@@ -132,19 +132,6 @@ public class WorldRenderer {
             Texture roadImage = Assets.road;
             batch.draw(roadImage, road.getPosition().x, road.getPosition().y);
         }
-
-        /*
-        int len = world.squirrels.size();
-        for (int i = 0; i < len; i++) {
-            Squirrel squirrel = world.squirrels.get(i);
-            TextureRegion keyFrame = Assets.squirrelFly.getKeyFrame(squirrel.stateTime, Animation.ANIMATION_LOOPING);
-            float side = squirrel.velocity.x < 0 ? -1 : 1;
-            if (side < 0)
-                batch.draw(keyFrame, squirrel.position.x + 0.5f, squirrel.position.y - 0.5f, side * 1, 1);
-            else
-                batch.draw(keyFrame, squirrel.position.x - 0.5f, squirrel.position.y - 0.5f, side * 1, 1);
-        }
-        */
     }
 
     /**

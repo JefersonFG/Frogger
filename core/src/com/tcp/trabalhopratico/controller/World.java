@@ -16,7 +16,7 @@ import java.util.List;
  * para todos os objetos em jogo e controla a distância percorrida em direção ao objetivo.
  */
 public class World {
-    static final float WORLD_WIDTH = 60;
+    static final float WORLD_WIDTH = 600;
     static final float WORLD_HEIGHT = 10;
     private static final int HORIZONTAL_SECTION_SIZE = 12;
     private static final int VERTICAL_SECTION_SIZE = 48;
@@ -42,7 +42,7 @@ public class World {
         this.obstacles = new ArrayList<Obstacle>();
         this.roads = new ArrayList<Road>();
         this.grass = new ArrayList<Grass>();
-        this.lake = new Lake(0, WORLD_HEIGHT - 2);
+        this.lake = new Lake(0, (WORLD_HEIGHT - 2) * VERTICAL_SECTION_SIZE);
 
         this.state = WORLD_STATE_RUNNING;
         this.distanceSoFar = 0;
@@ -79,18 +79,18 @@ public class World {
      */
     private void generateLevel () {
         Grass grass1 = new Grass(0, 0);
-        Grass grass2 = new Grass(0, 3);
-        Grass grass3 = new Grass(0, 5);
+        Grass grass2 = new Grass(0, 3 * VERTICAL_SECTION_SIZE);
+        Grass grass3 = new Grass(0, 5 * VERTICAL_SECTION_SIZE);
 
         grass.add(grass1);
         grass.add(grass2);
         grass.add(grass3);
 
-        Road road1 = new Road(0, 1);
-        Road road2 = new Road(0, 2);
-        Road road3 = new Road(0, 4);
-        Road road4 = new Road(0, 6);
-        Road road5 = new Road(0, 7);
+        Road road1 = new Road(0, VERTICAL_SECTION_SIZE);
+        Road road2 = new Road(0, 2 * VERTICAL_SECTION_SIZE);
+        Road road3 = new Road(0, 4 * VERTICAL_SECTION_SIZE);
+        Road road4 = new Road(0, 6 * VERTICAL_SECTION_SIZE);
+        Road road5 = new Road(0, 7 * VERTICAL_SECTION_SIZE);
 
         roads.add(road1);
         roads.add(road2);
