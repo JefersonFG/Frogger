@@ -155,7 +155,7 @@ public class World {
      * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
      */
     public void moveFrogUp() {
-        //TODO Implementar movimento para cima do sapo
+        // TODO Implementar movimento para cima do sapo
     }
 
     /**
@@ -163,7 +163,7 @@ public class World {
      * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
      */
     public void moveFrogDown() {
-        //TODO Implementar movimento para baixo do sapo
+        // TODO Implementar movimento para baixo do sapo
     }
 
     /**
@@ -171,7 +171,7 @@ public class World {
      * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
      */
     public void moveFrogRight() {
-        //TODO Implementar movimento para a direita do sapo
+        // TODO Implementar movimento para a direita do sapo
     }
 
     /**
@@ -179,7 +179,7 @@ public class World {
      * atualiza o status do sapo e finaliza o jogo, se houver com um obstáculo desfaz o movimento.
      */
     public void moveFrogLeft() {
-        //TODO Implementar movimento para a esquerda do sapo
+        // TODO Implementar movimento para a esquerda do sapo
     }
 
     /**
