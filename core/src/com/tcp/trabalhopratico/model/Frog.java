@@ -35,14 +35,6 @@ public class Frog extends GameObject {
     }
 
     /**
-     * Setter de state.
-     * @param state Novo estado do sapo.
-     */
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    /**
      * Getter de lives.
      * @return Número de vidas restantes do sapo.
      */
@@ -65,37 +57,37 @@ public class Frog extends GameObject {
      */
     public Frog (float x, float y) {
         super(x, y, FROG_WIDTH, FROG_HEIGHT);
-        setLives(FROG_MAX_LIVES);
-        setState(FROG_STATE_NORMAL);
         lastPosition = new Vector2(x, y);
+        lives = FROG_MAX_LIVES;
+        state = FROG_STATE_NORMAL;
     }
 
     /**
      * Método que movimenta o sapo para cima.
      */
     public void moveUp() {
-        // TODO Implementar movimento para cima do sapo
+        getPosition().y += FROG_HEIGHT;
     }
 
     /**
      * Método que movimenta o sapo para baixo.
      */
     public void moveDown() {
-        // TODO Implementar movimento para baixo do sapo
+        getPosition().y -= FROG_HEIGHT;
     }
 
     /**
      * Método que movimenta o sapo para a direita.
      */
     public void moveRight() {
-        // TODO Implementar movimento para a direita do sapo
+        getPosition().x += FROG_WIDTH;
     }
 
     /**
      * Método que movimenta o sapo para a esquerda.
      */
     public void moveLeft() {
-        // TODO Implementar movimento para a esquerda do sapo
+        getPosition().x -= FROG_WIDTH;
     }
 
     /**
@@ -103,20 +95,22 @@ public class Frog extends GameObject {
      * atualizando a última posição do sapo como sendo a atual.
      */
     public void confirmMove() {
-        //
+        lastPosition.x = getLastPosition().x;
+        lastPosition.y = getLastPosition().y;
     }
 
     /**
      * Método que desfaz o movimento do sapo em caso de colisão com um obstáculo.
      */
     public void undoMove() {
-        // TODO Implementar desfazer movimento do sapo
+        getLastPosition().x = lastPosition.x;
+        getLastPosition().y = lastPosition.y;
     }
 
     /**
      * Método que atualiza o estado do sapo em caso de colisão com um automóvel.
      */
     public void hitAutomobile() {
-        // TODO Implementar colisão com automóvel
+        state = FROG_STATE_HIT;
     }
 }
