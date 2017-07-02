@@ -9424,7 +9424,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+checkGameOver()",
+											"text": "+checkGameWon()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -20557,7 +20557,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
-							"name": "checkGameOver",
+							"name": "checkGameWon",
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,

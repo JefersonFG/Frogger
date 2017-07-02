@@ -10,7 +10,6 @@ import com.tcp.trabalhopratico.model.Obstacle;
 import com.tcp.trabalhopratico.model.Road;
 import com.tcp.trabalhopratico.model.Tree;
 import com.tcp.trabalhopratico.model.Truck;
-import com.tcp.trabalhopratico.view.Frogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,8 @@ public class World {
     private static final int WORLD_HEIGHT = 480;
     private static final int HORIZONTAL_SECTION_SIZE = WORLD_WIDTH / 5;
     private static final int VERTICAL_SECTION_SIZE = WORLD_HEIGHT / 10;
-    public static final int WORLD_STATE_RUNNING = 0;
+    private static final int MAX_DISTANCE = 8;
+    private static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_GAME_OVER = 1;
 
     private int state;
@@ -130,7 +130,7 @@ public class World {
         updateAutomobiles(deltaTime);
         if (frog.getState() != Frog.FROG_STATE_HIT)
             checkAutomobileCollisions();
-        checkGameOver();
+        checkGameWon();
     }
 
     /**
@@ -291,11 +291,8 @@ public class World {
     /**
      * Verifica se o jogo deve ser finalizado.
      */
-    private void checkGameOver() {
-        /*
-        if (heightSoFar - 7.5f > bob.position.y) {
+    private void checkGameWon() {
+        if (distanceSoFar == MAX_DISTANCE)
             state = WORLD_STATE_GAME_OVER;
-        }
-        */
     }
 }
