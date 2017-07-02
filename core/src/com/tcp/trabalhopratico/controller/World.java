@@ -10,6 +10,7 @@ import com.tcp.trabalhopratico.model.Obstacle;
 import com.tcp.trabalhopratico.model.Road;
 import com.tcp.trabalhopratico.model.Tree;
 import com.tcp.trabalhopratico.model.Truck;
+import com.tcp.trabalhopratico.view.Frogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -189,9 +190,19 @@ public class World {
     /**
      * Verifica se não ocorreram colisões do sapo com obstáculos ou automóveis.
      */
-    private void checkCollisions () {
+    private void checkCollisions() {
+        checkBorderCollision();
         checkAutomobileCollisions();
         checkObstacleCollision();
+    }
+
+    /**
+     * Verifica se o movimento do sapo não o faz sair dos limites da tela, se fizer desfaz o movimento.
+     */
+    private void checkBorderCollision() {
+        if (frog.getPosition().x < 0 || frog.getPosition().x >= WORLD_WIDTH ||
+                frog.getPosition().y < 0 || frog.getPosition().y >= WORLD_HEIGHT)
+            frog.undoMove();
     }
 
     /**
@@ -249,6 +260,7 @@ public class World {
             }
         }
 
+        // TODO Refatorar confirmação do movimento, deve ocorrer após todas as verificações
         if (!hitObstacle) {
             updateDistanceSoFar();
             frog.confirmMove();
@@ -279,7 +291,7 @@ public class World {
     /**
      * Verifica se o jogo deve ser finalizado.
      */
-    private void checkGameOver () {
+    private void checkGameOver() {
         /*
         if (heightSoFar - 7.5f > bob.position.y) {
             state = WORLD_STATE_GAME_OVER;
