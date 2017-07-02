@@ -71,26 +71,6 @@ public class WorldRenderer {
     private void renderFrog() {
         Frog frog = world.frog;
         batch.draw(Assets.frog, frog.getPosition().x, frog.getPosition().y);
-        /*
-        TextureRegion keyFrame;
-        switch (world.bob.state) {
-            case Bob.BOB_STATE_FALL:
-                keyFrame = Assets.bobFall.getKeyFrame(world.bob.stateTime, Animation.ANIMATION_LOOPING);
-                break;
-            case Bob.BOB_STATE_JUMP:
-                keyFrame = Assets.bobJump.getKeyFrame(world.bob.stateTime, Animation.ANIMATION_LOOPING);
-                break;
-            case Bob.BOB_STATE_HIT:
-            default:
-                keyFrame = Assets.bobHit;
-        }
-
-        float side = world.bob.velocity.x < 0 ? -1 : 1;
-        if (side < 0)
-            batch.draw(keyFrame, world.bob.position.x + 0.5f, world.bob.position.y - 0.5f, side * 1, 1);
-        else
-            batch.draw(keyFrame, world.bob.position.x - 0.5f, world.bob.position.y - 0.5f, side * 1, 1);
-        */
     }
 
     /**
