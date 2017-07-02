@@ -229,6 +229,7 @@ class GameScreen extends ScreenAdapter {
      * Atualiza o conteúdo na tela no estado READY, que é a palavra READY sobre o fundo do jogo.
      */
     private void presentReady () {
+        game.batcher.draw(Assets.headerBackground, 0, Frogger.SCREEN_HEIGHT - 48, Frogger.SCREEN_WIDTH, 48);
         game.batcher.draw(Assets.ready, Frogger.SCREEN_WIDTH / 2 - 192 / 2,
                 Frogger.SCREEN_HEIGHT / 2 - 32 / 2, 192, 32);
     }
@@ -259,6 +260,7 @@ class GameScreen extends ScreenAdapter {
      * Atualiza o conteúdo na tela no estado GAMEOVER, que é o texto GAMEOVER e a pontuação final.
      */
     private void presentGameOver () {
+        game.batcher.draw(Assets.headerBackground, 0, Frogger.SCREEN_HEIGHT - 48, Frogger.SCREEN_WIDTH, 48);
         game.batcher.draw(Assets.gameOver, Frogger.SCREEN_WIDTH / 4,
                 Frogger.SCREEN_HEIGHT / 2 - 96 / 2, 160, 96);
         glyphLayout.setText(Assets.font, scoreString);
