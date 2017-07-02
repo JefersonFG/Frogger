@@ -138,17 +138,11 @@ public class World {
      * @param deltaTime Tempo em segundos desde a última atualização.
      */
     private void updateAutomobiles(float deltaTime) {
-        /*
-        int len = platforms.size();
+        int len = automobiles.size();
         for (int i = 0; i < len; i++) {
-            Platform platform = platforms.get(i);
-            platform.update(deltaTime);
-            if (platform.state == Platform.PLATFORM_STATE_PULVERIZING && platform.stateTime > Platform.PLATFORM_PULVERIZE_TIME) {
-                platforms.remove(platform);
-                len = platforms.size();
-            }
+            Automobile automobile = automobiles.get(i);
+            automobile.update(deltaTime);
         }
-        */
     }
 
     /**
@@ -223,6 +217,7 @@ public class World {
                     frog.getPosition().y = 0;
                     frog.getLastPosition().x = HORIZONTAL_SECTION_SIZE * 2;
                     frog.getLastPosition().y = 0;
+                    distanceSoFar = 0;
                 } else {
                     frog.hitAutomobile();
                     state = WORLD_STATE_GAME_OVER;
