@@ -24,7 +24,8 @@ public class World {
     private static final int WORLD_HEIGHT = 480;
     private static final int HORIZONTAL_SECTION_SIZE = WORLD_WIDTH / 5;
     private static final int VERTICAL_SECTION_SIZE = WORLD_HEIGHT / 10;
-    public static final int WORLD_STATE_RUNNING = 0;
+    private static final int MAX_DISTANCE = 8;
+    private static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_GAME_OVER = 1;
 
     private int state;
@@ -128,8 +129,8 @@ public class World {
     public void update (float deltaTime) {
         updateAutomobiles(deltaTime);
         if (frog.getState() != Frog.FROG_STATE_HIT)
-            checkCollisions();
-        checkGameOver();
+            checkAutomobileCollisions();
+        checkGameWon();
     }
 
     /**
@@ -156,6 +157,7 @@ public class World {
      */
     public void moveFrogUp() {
         frog.moveUp();
+        checkCollisions();
     }
 
     /**
@@ -164,6 +166,7 @@ public class World {
      */
     public void moveFrogDown() {
         frog.moveDown();
+        checkCollisions();
     }
 
     /**
@@ -172,6 +175,7 @@ public class World {
      */
     public void moveFrogRight() {
         frog.moveRight();
+        checkCollisions();
     }
 
     /**
@@ -180,64 +184,115 @@ public class World {
      */
     public void moveFrogLeft() {
         frog.moveLeft();
+        checkCollisions();
     }
 
     /**
      * Verifica se não ocorreram colisões do sapo com obstáculos ou automóveis.
      */
-    private void checkCollisions () {
+    private void checkCollisions() {
+        checkBorderCollision();
         checkAutomobileCollisions();
         checkObstacleCollision();
     }
 
     /**
-     * Verifica se houve colisão do sapo com um automóvel.
+     * Verifica se o movimento do sapo não o faz sair dos limites da tela, se fizer desfaz o movimento.
+     */
+    private void checkBorderCollision() {
+        if (frog.getPosition().x < 0 || frog.getPosition().x >= WORLD_WIDTH ||
+                frog.getPosition().y < 0 || frog.getPosition().y >= (WORLD_HEIGHT - frog.getBounds().height))
+            frog.undoMove();
+    }
+
+    /**
+     * Verifica se houve colisão do sapo com um automóvel. Se houver, diminui uma vida do sapo.
+     * Se o sapo ainda tiver vidas sobrando, reinicia sua posição. Caso não tenha mais vidas
+     * sobrando finaliza o jogo.
      */
     private void checkAutomobileCollisions() {
-        /*
-        if (bob.velocity.y > 0) return;
+        int len = automobiles.size();
 
-        int len = platforms.size();
         for (int i = 0; i < len; i++) {
-            Platform platform = platforms.get(i);
-            if (bob.position.y > platform.position.y) {
-                if (bob.bounds.overlaps(platform.bounds)) {
-                    bob.hitPlatform();
-                    listener.jump();
-                    if (rand.nextFloat() > 0.5f) {
-                        platform.pulverize();
-                    }
-                    break;
+            Automobile automobile = automobiles.get(i);
+            if (isFrogAndAutomobileOnSameSpot(automobile)) {
+                frog.setLives(frog.getLives() - 1);
+
+                if (frog.getLives() > 0) {
+                    frog.getPosition().x = HORIZONTAL_SECTION_SIZE * 2;
+                    frog.getPosition().y = 0;
+                    frog.getLastPosition().x = HORIZONTAL_SECTION_SIZE * 2;
+                    frog.getLastPosition().y = 0;
+                } else {
+                    frog.hitAutomobile();
+                    state = WORLD_STATE_GAME_OVER;
                 }
             }
         }
-        */
+    }
+
+    /**
+     * Verifica se o sapo está no mesmo ponto que o automóvel.
+     * @param automobile Automóvel a verificar se está no mesmo ponto que o sapo.
+     * @return True caso estejam na mesma posição, false do contrário.
+     */
+    private boolean isFrogAndAutomobileOnSameSpot(Automobile automobile) {
+        return ((frog.getPosition().x >= automobile.getPosition().x &&
+                frog.getPosition().x <= (automobile.getPosition().x + automobile.getBounds().width)) ||
+                ((frog.getPosition().x + frog.getBounds().width) >= automobile.getPosition().x &&
+                (frog.getPosition().x + frog.getBounds().width) <=
+                        (automobile.getPosition().x + automobile.getBounds().width)))
+                && (frog.getPosition().y == automobile.getPosition().y);
     }
 
     /**
      * Verifica se houve colisão do sapo com um obstáculo.
      */
     private void checkObstacleCollision() {
-        /*
-        int len = squirrels.size();
+        int len = obstacles.size();
+        boolean hitObstacle = false;
+
         for (int i = 0; i < len; i++) {
-            Squirrel squirrel = squirrels.get(i);
-            if (squirrel.bounds.overlaps(bob.bounds)) {
-                bob.hitSquirrel();
-                listener.hit();
+            Obstacle obstacle = obstacles.get(i);
+            if (isFrogAndObstacleOnSameSpot(obstacle)) {
+                frog.undoMove();
+                hitObstacle = true;
             }
         }
-        */
+
+        // TODO Refatorar confirmação do movimento, deve ocorrer após todas as verificações
+        if (!hitObstacle) {
+            updateDistanceSoFar();
+            frog.confirmMove();
+        }
+    }
+
+    /**
+     * Verifica se o sapo está no mesmo ponto que o obstáculo.
+     * @param obstacle Obstáculo a verificar se está no mesmo ponto que o sapo.
+     * @return True caso estejam na mesma posição, false do contrário.
+     */
+    private boolean isFrogAndObstacleOnSameSpot(Obstacle obstacle) {
+        return (frog.getPosition().x == obstacle.getPosition().x)
+                && (frog.getPosition().y == obstacle.getPosition().y);
+    }
+
+    /**
+     * Função que verifica se o sapo está se movendo em direção ao objetivo ou na direção oposta
+     * e registra no campo de distância percorrida, para posterior contagem de pontos.
+     */
+    private void updateDistanceSoFar() {
+        if (frog.getPosition().y > frog.getLastPosition().y)
+            distanceSoFar++;
+        else if (frog.getPosition().y < frog.getLastPosition().y)
+            distanceSoFar--;
     }
 
     /**
      * Verifica se o jogo deve ser finalizado.
      */
-    private void checkGameOver () {
-        /*
-        if (heightSoFar - 7.5f > bob.position.y) {
+    private void checkGameWon() {
+        if (distanceSoFar == MAX_DISTANCE)
             state = WORLD_STATE_GAME_OVER;
-        }
-        */
     }
 }
