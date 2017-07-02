@@ -110,9 +110,9 @@ public class World {
 
         Car car1 = new Car(0, VERTICAL_SECTION_SIZE);
         Car car2 = new Car(0, 6 * VERTICAL_SECTION_SIZE);
-        Truck truck1 = new Truck(HORIZONTAL_SECTION_SIZE * 4, 2 * VERTICAL_SECTION_SIZE);
-        Truck truck2 = new Truck(HORIZONTAL_SECTION_SIZE * 4, 4 * VERTICAL_SECTION_SIZE);
-        Motorcycle motorcycle = new Motorcycle(HORIZONTAL_SECTION_SIZE * 4, 7 * VERTICAL_SECTION_SIZE);
+        Truck truck1 = new Truck(WORLD_WIDTH - Truck.TRUCK_WIDTH, 2 * VERTICAL_SECTION_SIZE);
+        Truck truck2 = new Truck(WORLD_WIDTH - Truck.TRUCK_WIDTH, 4 * VERTICAL_SECTION_SIZE);
+        Motorcycle motorcycle = new Motorcycle(WORLD_WIDTH - Motorcycle.MOTORCYCLE_WIDTH, 7 * VERTICAL_SECTION_SIZE);
 
         automobiles.add(car1);
         automobiles.add(car2);
