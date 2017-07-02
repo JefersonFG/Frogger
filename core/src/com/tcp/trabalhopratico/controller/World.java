@@ -201,7 +201,7 @@ public class World {
      */
     private void checkBorderCollision() {
         if (frog.getPosition().x < 0 || frog.getPosition().x >= WORLD_WIDTH ||
-                frog.getPosition().y < 0 || frog.getPosition().y >= WORLD_HEIGHT)
+                frog.getPosition().y < 0 || frog.getPosition().y >= (WORLD_HEIGHT - frog.getBounds().height))
             frog.undoMove();
     }
 
