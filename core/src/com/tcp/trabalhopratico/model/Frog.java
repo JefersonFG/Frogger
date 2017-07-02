@@ -6,6 +6,7 @@ package com.tcp.trabalhopratico.model;
  * a colisões com automóveis e obstáculos.
  */
 public class Frog extends GameObject {
+    // TODO Refatorar constantes no Model (e possívelmente para todo o programa)
     private static final float FROG_WIDTH = 64;
     private static final float FROG_HEIGHT = 48;
     private static final int FROG_MAX_LIVES = 3;
