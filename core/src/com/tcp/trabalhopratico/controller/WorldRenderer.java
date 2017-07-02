@@ -1,6 +1,11 @@
 package com.tcp.trabalhopratico.controller;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.tcp.trabalhopratico.helper.Assets;
+import com.tcp.trabalhopratico.model.Grass;
+import com.tcp.trabalhopratico.model.Lake;
+import com.tcp.trabalhopratico.model.Road;
 
 /**
  * Classe responsável por atualizar os gráficos dos elementos de jogo na tela.
@@ -47,8 +52,6 @@ public class WorldRenderer {
     private void renderBackground () {
         batch.disableBlending();
         batch.begin();
-        //batch.draw(Assets.backgroundRegion, cam.position.x - FRUSTUM_WIDTH / 2, cam.position.y - FRUSTUM_HEIGHT / 2, FRUSTUM_WIDTH,
-        //        FRUSTUM_HEIGHT);
         renderRoads();
         renderGrass();
         renderLake();
@@ -123,6 +126,13 @@ public class WorldRenderer {
      * Renderiza as estradas na tela.
      */
     private void renderRoads() {
+        int len = world.roads.size();
+        for (int i = 0; i < len; i++) {
+            Road road = world.roads.get(i);
+            Texture roadImage = Assets.road;
+            batch.draw(roadImage, road.getPosition().x, road.getPosition().y);
+        }
+
         /*
         int len = world.squirrels.size();
         for (int i = 0; i < len; i++) {
@@ -141,16 +151,19 @@ public class WorldRenderer {
      * Renderiza os canteiros na tela.
      */
     private void renderGrass() {
-        //
+        int len = world.grass.size();
+        for (int i = 0; i < len; i++) {
+            Grass grass = world.grass.get(i);
+            Texture grassImage = Assets.grass;
+            batch.draw(grassImage, grass.getPosition().x, grass.getPosition().y);
+        }
     }
 
     /**
      * Renderiza o lago na tela.
      */
     private void renderLake() {
-        /*
-        Castle castle = world.castle;
-        batch.draw(Assets.castle, castle.position.x - 1, castle.position.y - 1, 2, 2);
-        */
+        Lake lake = world.lake;
+        batch.draw(Assets.lake, lake.getPosition().x, lake.getPosition().y);
     }
 }
