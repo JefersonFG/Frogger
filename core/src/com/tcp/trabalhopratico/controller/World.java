@@ -1,11 +1,15 @@
 package com.tcp.trabalhopratico.controller;
 
 import com.tcp.trabalhopratico.model.Automobile;
+import com.tcp.trabalhopratico.model.Car;
 import com.tcp.trabalhopratico.model.Frog;
 import com.tcp.trabalhopratico.model.Grass;
 import com.tcp.trabalhopratico.model.Lake;
+import com.tcp.trabalhopratico.model.Motorcycle;
 import com.tcp.trabalhopratico.model.Obstacle;
 import com.tcp.trabalhopratico.model.Road;
+import com.tcp.trabalhopratico.model.Tree;
+import com.tcp.trabalhopratico.model.Truck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +20,10 @@ import java.util.List;
  * para todos os objetos em jogo e controla a distância percorrida em direção ao objetivo.
  */
 public class World {
-    static final float WORLD_WIDTH = 600;
-    static final float WORLD_HEIGHT = 10;
-    private static final int HORIZONTAL_SECTION_SIZE = 12;
-    private static final int VERTICAL_SECTION_SIZE = 48;
+    private static final int WORLD_WIDTH = 320;
+    private static final int WORLD_HEIGHT = 480;
+    private static final int HORIZONTAL_SECTION_SIZE = WORLD_WIDTH / 5;
+    private static final int VERTICAL_SECTION_SIZE = WORLD_HEIGHT / 10;
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_GAME_OVER = 1;
 
@@ -37,12 +41,12 @@ public class World {
      * Construtor que inicializa todos os objetos de jogo.
      */
     public World() {
-        this.frog = new Frog(HORIZONTAL_SECTION_SIZE * 3, 0);
+        this.frog = new Frog(HORIZONTAL_SECTION_SIZE * 2, 0);
         this.automobiles = new ArrayList<Automobile>();
         this.obstacles = new ArrayList<Obstacle>();
         this.roads = new ArrayList<Road>();
         this.grass = new ArrayList<Grass>();
-        this.lake = new Lake(0, (WORLD_HEIGHT - 2) * VERTICAL_SECTION_SIZE);
+        this.lake = new Lake(0, 8 * VERTICAL_SECTION_SIZE);
 
         this.state = WORLD_STATE_RUNNING;
         this.distanceSoFar = 0;
@@ -97,6 +101,24 @@ public class World {
         roads.add(road3);
         roads.add(road4);
         roads.add(road5);
+
+        Tree tree1 = new Tree(HORIZONTAL_SECTION_SIZE * 2, 3 * VERTICAL_SECTION_SIZE);
+        Tree tree2 = new Tree(HORIZONTAL_SECTION_SIZE * 4, 5 * VERTICAL_SECTION_SIZE);
+
+        obstacles.add(tree1);
+        obstacles.add(tree2);
+
+        Car car1 = new Car(0, VERTICAL_SECTION_SIZE);
+        Car car2 = new Car(0, 6 * VERTICAL_SECTION_SIZE);
+        Truck truck1 = new Truck(HORIZONTAL_SECTION_SIZE * 4, 2 * VERTICAL_SECTION_SIZE);
+        Truck truck2 = new Truck(HORIZONTAL_SECTION_SIZE * 4, 4 * VERTICAL_SECTION_SIZE);
+        Motorcycle motorcycle = new Motorcycle(HORIZONTAL_SECTION_SIZE * 4, 7 * VERTICAL_SECTION_SIZE);
+
+        automobiles.add(car1);
+        automobiles.add(car2);
+        automobiles.add(truck1);
+        automobiles.add(truck2);
+        automobiles.add(motorcycle);
     }
 
     /**
