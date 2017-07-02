@@ -4,8 +4,8 @@ package com.tcp.trabalhopratico.model;
  * Classe que representa um canteiro na tela. Contém as dimensões do canteiro.
  */
 public class Grass extends GameObject {
-    private static final float GRASS_WIDTH = 0.8f;
-    private static final float GRASS_HEIGHT = 0.8f;
+    private static final float GRASS_WIDTH = 320;
+    private static final float GRASS_HEIGHT = 48;
 
     /**
      * Construtor que recebe a posição do canteiro.
