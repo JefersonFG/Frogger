@@ -32,6 +32,7 @@ class GameScreen extends ScreenAdapter {
     private static final int GAME_OVER = 3;
 
     private static final int MAX_TIME = 60;
+    private static final String DEFAULT_PLAYER_NAME = "player";
 
     private Frogger game;
 
@@ -346,7 +347,7 @@ class GameScreen extends ScreenAdapter {
         if (Persistence.isHighscore(lastScore)) {
             scoreString = "NEW HIGHSCORE: " + lastScore;
 
-            Persistence.addScore(lastScore, "player");
+            Persistence.addScore(lastScore, DEFAULT_PLAYER_NAME);
             Persistence.save();
         } else {
             scoreString = "FINAL SCORE: " + lastScore;

@@ -19,7 +19,6 @@ public class Persistence {
     private static String SCORE_LIST_SEPARATOR = ";";
     private static String ENTRY_SEPARATOR = "-";
     private final static String scoresFile = "highscores.frogger";
-    private final static String skinFile = "skin/uiskin.json";
     public static TreeMap<Integer, String> highscores = new TreeMap<Integer, String>(Collections.reverseOrder());
 
     /**
