@@ -4,14 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tcp.trabalhopratico.controller.World;
 import com.tcp.trabalhopratico.controller.WorldRenderer;
 import com.tcp.trabalhopratico.helper.Assets;
@@ -111,7 +114,7 @@ class GameScreen extends ScreenAdapter {
 
                 boolean result = false;
 
-                switch(keyCode) {
+                switch (keyCode) {
                     case (Input.Keys.W):
                     case (Input.Keys.DPAD_UP):
                         result = true;
@@ -340,9 +343,10 @@ class GameScreen extends ScreenAdapter {
      * Também prepara a string para exibição ao usuário.
      */
     private void saveScore() {
-        if (lastScore >= Persistence.highscores[Persistence.NUMBER_OF_HIGHSCORES - 1]) {
+        if (Persistence.isHighscore(lastScore)) {
             scoreString = "NEW HIGHSCORE: " + lastScore;
-            Persistence.addScore(lastScore);
+
+            Persistence.addScore(lastScore, "player");
             Persistence.save();
         } else {
             scoreString = "FINAL SCORE: " + lastScore;
