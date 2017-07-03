@@ -1,5 +1,6 @@
 package com.tcp.trabalhopratico.desktop;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.tcp.trabalhopratico.view.Frogger;
@@ -14,6 +15,7 @@ public class DesktopLauncher {
 	 */
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.addIcon("ic_launcher.png", Files.FileType.Internal);
 		config.title = "Frogger";
 		config.height = 624;
 		config.width = 416;
