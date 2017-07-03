@@ -8,8 +8,9 @@ import com.badlogic.gdx.files.FileHandle;
  * A classe cria uma string padrão de pontuações para preencher a tela de rankings.
  */
 public class Persistence {
-    public static int[] highscores = new int[] {80, 70, 60, 50, 40};
-    public final static String file = "Highscores.frogger";
+    public static int NUMBER_OF_HIGHSCORES = 10;
+    public static int[] highscores = new int[] {85, 80, 75, 70, 65, 60, 55, 50, 45, 40};
+    public final static String file = "highscores.frogger";
 
     /**
      * Carrega o ranking de pontuação do jogo do disco.
@@ -20,7 +21,7 @@ public class Persistence {
 
             String[] strings = filehandle.readString().split("\n");
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < NUMBER_OF_HIGHSCORES; i++) {
                 highscores[i] = Integer.parseInt(strings[i+1]);
             }
         } catch (Throwable e) {
@@ -35,7 +36,7 @@ public class Persistence {
         try {
             FileHandle filehandle = Gdx.files.external(file);
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < NUMBER_OF_HIGHSCORES; i++) {
                 filehandle.writeString(Integer.toString(highscores[i])+"\n", true);
             }
         } catch (Throwable e) {
@@ -48,9 +49,9 @@ public class Persistence {
      * @param score Pontuação a ser adicionada no ranking.
      */
     public static void addScore (int score) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < NUMBER_OF_HIGHSCORES; i++) {
             if (highscores[i] < score) {
-                for (int j = 4; j > i; j--)
+                for (int j = NUMBER_OF_HIGHSCORES - 1; j > i; j--)
                     highscores[j] = highscores[j - 1];
                 highscores[i] = score;
                 break;

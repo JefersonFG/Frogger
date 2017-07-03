@@ -34,13 +34,13 @@ class HighscoresScreen extends ScreenAdapter {
         guiCam.position.set(Frogger.SCREEN_WIDTH / 2, Frogger.SCREEN_HEIGHT / 2, 0);
         backBounds = new Rectangle(0, 0, 64, 64);
         touchPoint = new Vector3();
-        highScores = new String[5];
-        for (int i = 0; i < 5; i++) {
+        highScores = new String[Persistence.NUMBER_OF_HIGHSCORES];
+        for (int i = 0; i < Persistence.NUMBER_OF_HIGHSCORES; i++) {
             highScores[i] = i + 1 + ". " + Persistence.highscores[i];
             glyphLayout.setText(Assets.font, highScores[i]);
             xOffset = Math.max(glyphLayout.width, xOffset);
         }
-        xOffset = 160 - xOffset / 2 + Assets.font.getSpaceWidth() / 2;
+        xOffset = Frogger.SCREEN_WIDTH / 2 - xOffset / 2 + Assets.font.getSpaceWidth() / 2;
     }
 
     /**
@@ -74,8 +74,8 @@ class HighscoresScreen extends ScreenAdapter {
         game.batcher.begin();
         game.batcher.draw(Assets.highScoresRegion, 10, 380, 300, 33);
 
-        float y = 150;
-        for (int i = 4; i >= 0; i--) {
+        float y = 100;
+        for (int i = Persistence.NUMBER_OF_HIGHSCORES - 1; i >= 0; i--) {
             Assets.font.draw(game.batcher, highScores[i], xOffset, y);
             y += Assets.font.getLineHeight();
         }

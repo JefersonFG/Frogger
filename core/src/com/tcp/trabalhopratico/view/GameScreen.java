@@ -340,7 +340,7 @@ class GameScreen extends ScreenAdapter {
      * Também prepara a string para exibição ao usuário.
      */
     private void saveScore() {
-        if (lastScore >= Persistence.highscores[4]) {
+        if (lastScore >= Persistence.highscores[Persistence.NUMBER_OF_HIGHSCORES - 1]) {
             scoreString = "NEW HIGHSCORE: " + lastScore;
             Persistence.addScore(lastScore);
             Persistence.save();
