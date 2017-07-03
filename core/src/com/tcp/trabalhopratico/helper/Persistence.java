@@ -27,8 +27,8 @@ public class Persistence {
      */
     public static void load () {
         try {
-            if (Gdx.files.external(scoresFile).exists()) {
-                FileHandle filehandle = Gdx.files.external(scoresFile);
+            if (Gdx.files.local(scoresFile).exists()) {
+                FileHandle filehandle = Gdx.files.local(scoresFile);
 
                 String[] scoreList = filehandle.readString().split(SCORE_LIST_SEPARATOR);
 
@@ -58,7 +58,7 @@ public class Persistence {
      */
     public static void save () {
         try {
-            FileHandle filehandle = Gdx.files.external(scoresFile);
+            FileHandle filehandle = Gdx.files.local(scoresFile);
 
             Set set = highscores.entrySet();
             Iterator iterator = set.iterator();
