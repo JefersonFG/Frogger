@@ -109,11 +109,11 @@ public class World {
         obstacles.add(tree1);
         obstacles.add(tree2);
 
-        Car car1 = new Car(0, VERTICAL_SECTION_SIZE);
-        Car car2 = new Car(0, 6 * VERTICAL_SECTION_SIZE);
-        Truck truck1 = new Truck(WORLD_WIDTH - Truck.TRUCK_WIDTH, 2 * VERTICAL_SECTION_SIZE);
-        Truck truck2 = new Truck(WORLD_WIDTH - Truck.TRUCK_WIDTH, 4 * VERTICAL_SECTION_SIZE);
-        Motorcycle motorcycle = new Motorcycle(WORLD_WIDTH - Motorcycle.MOTORCYCLE_WIDTH, 7 * VERTICAL_SECTION_SIZE);
+        Car car1 = new Car(0 - Car.CAR_WIDTH, VERTICAL_SECTION_SIZE);
+        Car car2 = new Car(0 - Car.CAR_WIDTH, 6 * VERTICAL_SECTION_SIZE);
+        Truck truck1 = new Truck(WORLD_WIDTH, 2 * VERTICAL_SECTION_SIZE);
+        Truck truck2 = new Truck(WORLD_WIDTH, 4 * VERTICAL_SECTION_SIZE);
+        Motorcycle motorcycle = new Motorcycle(WORLD_WIDTH, 7 * VERTICAL_SECTION_SIZE);
 
         automobiles.add(car1);
         automobiles.add(car2);
@@ -142,6 +142,19 @@ public class World {
         for (int i = 0; i < len; i++) {
             Automobile automobile = automobiles.get(i);
             automobile.update(deltaTime);
+            resetAutomobileOutOfBounds(automobile);
+        }
+    }
+
+    private void resetAutomobileOutOfBounds(Automobile automobile) {
+        if (automobile.movementDirection == Automobile.DIRECTION_RIGHT) {
+            if (automobile.getPosition().x > (WORLD_WIDTH + automobile.getBounds().width)) {
+                automobile.getPosition().x = 0 - automobile.getBounds().width;
+            }
+        } else {
+            if (automobile.getPosition().x < (0 - automobile.getBounds().width)) {
+                automobile.getPosition().x = WORLD_WIDTH + automobile.getBounds().width;
+            }
         }
     }
 

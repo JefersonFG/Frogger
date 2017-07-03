@@ -1,8 +1,5 @@
 package com.tcp.trabalhopratico.model;
 
-import com.tcp.trabalhopratico.controller.World;
-import com.tcp.trabalhopratico.view.Frogger;
-
 /**
  * Classe que representa um caminhão na tela. Contém as dimensões do caminhão, sua velocidade
  * e uma implementação do método de atualização de posição na tela.

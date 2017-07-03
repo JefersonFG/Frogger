@@ -7,9 +7,9 @@ package com.tcp.trabalhopratico.model;
  */
 public abstract class Automobile extends DynamicGameObject {
     private static final float UPDATE_STEP_SIZE = 71.5f;
-    static final int DIRECTION_RIGHT = 0;
-    static final int DIRECTION_LEFT = 1;
-    int movementDirection;
+    public static final int DIRECTION_RIGHT = 0;
+    public static final int DIRECTION_LEFT = 1;
+    public int movementDirection;
 
     /**
      * Implementação básica do construtor que chama o da superclasse.
