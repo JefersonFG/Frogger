@@ -69,6 +69,7 @@ public class WorldRenderer {
      * Renderiza o sapo na tela.
      */
     private void renderFrog() {
+        // TODO Adicionar sapo atropelado
         Frog frog = world.frog;
         batch.draw(Assets.frog, frog.getPosition().x, frog.getPosition().y);
     }

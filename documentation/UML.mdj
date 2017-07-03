@@ -9165,7 +9165,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+generateLevel()",
+											"text": "-generateLevel()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9223,7 +9223,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+updateAutomobiles(deltaTime: float)",
+											"text": "-updateAutomobiles(deltaTime: float)",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9252,7 +9252,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+resetAutomobileOutOfBounds(automobile: Automobile)",
+											"text": "-resetAutomobileOutOfBounds(automobile: Automobile)",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9397,7 +9397,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+checkCollisions()",
+											"text": "-checkCollisions()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9426,7 +9426,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+checkBorderCollision()",
+											"text": "-checkBorderCollision()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9455,7 +9455,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+checkAutomobileCollision()",
+											"text": "-checkAutomobileCollision()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9484,7 +9484,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+isFrogAndAutomobileOnSameSpot(automobile: Automobile): boolean",
+											"text": "-isFrogAndAutomobileOnSameSpot(automobile: Automobile): boolean",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9513,7 +9513,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+checkObstacleCollision()",
+											"text": "-checkObstacleCollision()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9542,7 +9542,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+isFrogAndObstacleOnSameSpot(obstacle: Obstacle): boolean",
+											"text": "-isFrogAndObstacleOnSameSpot(obstacle: Obstacle): boolean",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9571,7 +9571,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+updateDistanceSoFar()",
+											"text": "-updateDistanceSoFar()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -9600,7 +9600,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+checkGameWon()",
+											"text": "-checkGameWon()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18203,7 +18203,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderObjects()",
+											"text": "-renderObjects()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18232,7 +18232,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderBackground()",
+											"text": "-renderBackground()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18261,7 +18261,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderFrog()",
+											"text": "-renderFrog()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18290,7 +18290,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderAutomobiles()",
+											"text": "-renderAutomobiles()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18319,7 +18319,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderObstacles()",
+											"text": "-renderObstacles()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18348,7 +18348,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderRoads()",
+											"text": "-renderRoads()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18377,7 +18377,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderGrass()",
+											"text": "-renderGrass()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -18406,7 +18406,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+renderLake()",
+											"text": "-renderLake()",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -20482,7 +20482,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "generateLevel",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"concurrency": "sequential",
@@ -20528,7 +20528,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "updateAutomobiles",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"parameters": [
@@ -20560,7 +20560,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "resetAutomobileOutOfBounds",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"parameters": [
@@ -20650,7 +20650,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "checkCollisions",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"concurrency": "sequential",
@@ -20664,7 +20664,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "checkBorderCollision",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"concurrency": "sequential",
@@ -20678,7 +20678,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "checkAutomobileCollision",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"concurrency": "sequential",
@@ -20692,7 +20692,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "isFrogAndAutomobileOnSameSpot",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"parameters": [
@@ -20741,7 +20741,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "checkObstacleCollision",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"concurrency": "sequential",
@@ -20755,7 +20755,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "isFrogAndObstacleOnSameSpot",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"parameters": [
@@ -20804,7 +20804,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "updateDistanceSoFar",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"concurrency": "sequential",
@@ -20818,7 +20818,7 @@
 								"$ref": "AAAAAAFcj19DuIxPD3Y="
 							},
 							"name": "checkGameWon",
-							"visibility": "public",
+							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
 							"concurrency": "sequential",
@@ -23326,7 +23326,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderObjects",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
@@ -23340,7 +23340,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderBackground",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
@@ -23354,7 +23354,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderFrog",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
@@ -23368,7 +23368,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderAutomobiles",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
@@ -23382,7 +23382,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderObstacles",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
@@ -23396,7 +23396,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderRoads",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
@@ -23410,7 +23410,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderGrass",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
@@ -23424,7 +23424,7 @@
 										"$ref": "AAAAAAFcdMMqbU5edSs="
 									},
 									"name": "renderLake",
-									"visibility": "public",
+									"visibility": "private",
 									"isStatic": false,
 									"isLeaf": false,
 									"concurrency": "sequential",
