@@ -5,7 +5,7 @@ package com.tcp.trabalhopratico.model;
  * e uma implementação do método de atualização de posição na tela.
  */
 public class Car extends Automobile {
-    public static final float CAR_WIDTH = 71;
+    public static final float CAR_WIDTH = 69;
     public static final float CAR_HEIGHT = 48;
     private static final float CAR_VELOCITY = 2;
 
