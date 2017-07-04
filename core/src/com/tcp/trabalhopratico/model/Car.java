@@ -1,8 +1,7 @@
 package com.tcp.trabalhopratico.model;
 
 /**
- * Classe que representa um carro na tela. Contém as dimensões do carro, sua velocidade
- * e uma implementação do método de atualização de posição na tela.
+ * Classe que representa um carro na tela. Contém as dimensões do carro e sua velocidade.
  */
 public class Car extends Automobile {
     public static final float CAR_WIDTH = 69;

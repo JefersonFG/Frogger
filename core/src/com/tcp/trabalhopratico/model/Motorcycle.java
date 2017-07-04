@@ -1,8 +1,7 @@
 package com.tcp.trabalhopratico.model;
 
 /**
- * Classe que representa uma motocicleta na tela. Contém as dimensões da motocicleta, sua velocidade
- * e uma implementação do método de atualização de posição na tela.
+ * Classe que representa uma motocicleta na tela. Contém as dimensões da motocicleta e sua velocidade.
  */
 public class Motorcycle extends Automobile {
     public static final float MOTORCYCLE_WIDTH = 59;

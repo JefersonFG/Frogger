@@ -1,8 +1,7 @@
 package com.tcp.trabalhopratico.model;
 
 /**
- * Classe que representa um caminhão na tela. Contém as dimensões do caminhão, sua velocidade
- * e uma implementação do método de atualização de posição na tela.
+ * Classe que representa um caminhão na tela. Contém as dimensões do caminhão e sua velocidade.
  */
 public class Truck extends Automobile {
     public static final float TRUCK_WIDTH = 134;

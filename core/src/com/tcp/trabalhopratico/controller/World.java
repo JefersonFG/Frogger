@@ -13,6 +13,7 @@ import com.tcp.trabalhopratico.model.Truck;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Classe que gerencia o fluxo do jogo. É responsável por criar o ambiente do jogo, atualizar os
@@ -38,19 +39,22 @@ public class World {
     final List<Grass> grass;
     final Lake lake;
 
+    private float timeCounter;
+
     /**
      * Construtor que inicializa todos os objetos de jogo.
      */
     public World() {
-        this.frog = new Frog(HORIZONTAL_SECTION_SIZE * 2, 0);
-        this.automobiles = new ArrayList<Automobile>();
-        this.obstacles = new ArrayList<Obstacle>();
-        this.roads = new ArrayList<Road>();
-        this.grass = new ArrayList<Grass>();
-        this.lake = new Lake(0, 8 * VERTICAL_SECTION_SIZE);
+        frog = new Frog(HORIZONTAL_SECTION_SIZE * 2, 0);
+        automobiles = new ArrayList<Automobile>();
+        obstacles = new ArrayList<Obstacle>();
+        roads = new ArrayList<Road>();
+        grass = new ArrayList<Grass>();
+        lake = new Lake(0, 8 * VERTICAL_SECTION_SIZE);
 
-        this.state = WORLD_STATE_RUNNING;
-        this.distanceSoFar = 0;
+        state = WORLD_STATE_RUNNING;
+        distanceSoFar = 0;
+        timeCounter = 0;
 
         generateLevel();
     }
@@ -111,14 +115,13 @@ public class World {
 
         Car car1 = new Car(0 - Car.CAR_WIDTH, VERTICAL_SECTION_SIZE, 1);
         Car car2 = new Car(0 - Car.CAR_WIDTH, 6 * VERTICAL_SECTION_SIZE, 6);
-        Truck truck1 = new Truck(WORLD_WIDTH, 2 * VERTICAL_SECTION_SIZE, 2);
-        Truck truck2 = new Truck(WORLD_WIDTH, 4 * VERTICAL_SECTION_SIZE, 4);
-        Motorcycle motorcycle = new Motorcycle(WORLD_WIDTH, 7 * VERTICAL_SECTION_SIZE, 7);
+        car2.setCanChangeLane(true);
+        Truck truck1 = new Truck(WORLD_WIDTH, 4 * VERTICAL_SECTION_SIZE, 4);
+        Motorcycle motorcycle = new Motorcycle(WORLD_WIDTH, 2 * VERTICAL_SECTION_SIZE, 2);
 
         automobiles.add(car1);
         automobiles.add(car2);
         automobiles.add(truck1);
-        automobiles.add(truck2);
         automobiles.add(motorcycle);
     }
 
@@ -134,7 +137,9 @@ public class World {
     }
 
     /**
-     * Atualiza o estados dos automóveis, que se movem na tela com o passar do tempo.
+     * Atualiza o estados dos automóveis, que se movem na tela com o passar do tempo. Se o automóvel
+     * for do tipo que pode trocar de faixa, espera um segundo e aleatóriamente (com cerca de 20% de
+     * chance) faz o automóvel trocar de faixa.
      * @param deltaTime Tempo em segundos desde a última atualização.
      */
     private void updateAutomobiles(float deltaTime) {
@@ -143,6 +148,19 @@ public class World {
             Automobile automobile = automobiles.get(i);
             automobile.update(deltaTime);
             resetAutomobileOutOfBounds(automobile);
+            if (automobile.getCanChangeLane()) {
+                timeCounter += deltaTime;
+                if (timeCounter >= 1) {
+                    timeCounter = 0;
+                    Random ran = new Random();
+                    if (ran.nextInt(6) >= 4) {
+                        if (automobile.getCurrentLane() == 6)
+                            automobile.changeLane(7);
+                        else if (automobile.getCurrentLane() == 7)
+                            automobile.changeLane(6);
+                    }
+                }
+            }
         }
     }
 
