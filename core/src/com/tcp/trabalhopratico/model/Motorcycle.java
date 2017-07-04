@@ -13,9 +13,10 @@ public class Motorcycle extends Automobile {
      * Construtor que recebe a posição inicial da motocicleta e seta sua velocidade.
      * @param x Posição da motocicleta no eixo x.
      * @param y Posição da motocicleta no eixo y.
+     * @param lane Faixa da rodovia pela qual a motocicleta irá se mover.
      */
-    public Motorcycle (float x, float y) {
-        super(x, y, MOTORCYCLE_WIDTH, MOTORCYCLE_HEIGHT);
+    public Motorcycle (float x, float y, int lane) {
+        super(x, y, MOTORCYCLE_WIDTH, MOTORCYCLE_HEIGHT, lane);
         getVelocity().set(MOTORCYCLE_VELOCITY, 0);
         movementDirection = DIRECTION_LEFT;
     }

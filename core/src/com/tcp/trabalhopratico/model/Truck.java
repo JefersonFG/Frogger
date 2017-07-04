@@ -13,9 +13,10 @@ public class Truck extends Automobile {
      * Construtor que recebe a posição inicial do caminhão e seta sua velocidade.
      * @param x Posição do caminhão no eixo x.
      * @param y Posição do caminhão no eixo y.
+     * @param lane Faixa da rodovia pela qual o caminhão irá se mover.
      */
-    public Truck (float x, float y) {
-        super(x, y, TRUCK_WIDTH, TRUCK_HEIGHT);
+    public Truck (float x, float y, int lane) {
+        super(x, y, TRUCK_WIDTH, TRUCK_HEIGHT, lane);
         getVelocity().set(TRUCK_VELOCITY, 0);
         movementDirection = DIRECTION_LEFT;
     }
