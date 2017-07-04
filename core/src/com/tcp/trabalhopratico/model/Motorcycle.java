@@ -5,8 +5,8 @@ package com.tcp.trabalhopratico.model;
  * e uma implementação do método de atualização de posição na tela.
  */
 public class Motorcycle extends Automobile {
-    private static final float MOTORCYCLE_WIDTH = 64;
-    private static final float MOTORCYCLE_HEIGHT = 48;
+    public static final float MOTORCYCLE_WIDTH = 89;
+    public static final float MOTORCYCLE_HEIGHT = 48;
     private static final float MOTORCYCLE_VELOCITY = 3;
 
     /**
@@ -17,14 +17,6 @@ public class Motorcycle extends Automobile {
     public Motorcycle (float x, float y) {
         super(x, y, MOTORCYCLE_WIDTH, MOTORCYCLE_HEIGHT);
         getVelocity().set(MOTORCYCLE_VELOCITY, 0);
-    }
-
-    /**
-     * Método que atualiza a posição da motocicleta na tela.
-     * @param deltaTime Tempo em segundos desde a última atualização.
-     */
-    @Override
-    public void update (float deltaTime) {
-        // TODO Implementar update de Motorcycle
+        movementDirection = DIRECTION_LEFT;
     }
 }

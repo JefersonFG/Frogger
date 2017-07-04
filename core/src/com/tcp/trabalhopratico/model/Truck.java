@@ -5,8 +5,8 @@ package com.tcp.trabalhopratico.model;
  * e uma implementação do método de atualização de posição na tela.
  */
 public class Truck extends Automobile {
-    private static final float TRUCK_WIDTH = 64;
-    private static final float TRUCK_HEIGHT = 48;
+    public static final float TRUCK_WIDTH = 109;
+    public static final float TRUCK_HEIGHT = 48;
     private static final float TRUCK_VELOCITY = 1;
 
     /**
@@ -17,14 +17,6 @@ public class Truck extends Automobile {
     public Truck (float x, float y) {
         super(x, y, TRUCK_WIDTH, TRUCK_HEIGHT);
         getVelocity().set(TRUCK_VELOCITY, 0);
-    }
-
-    /**
-     * Método que atualiza a posição do caminhão na tela.
-     * @param deltaTime Tempo em segundos desde a última atualização.
-     */
-    @Override
-    public void update (float deltaTime) {
-        // TODO Implementar update de Truck
+        movementDirection = DIRECTION_LEFT;
     }
 }

@@ -1,13 +1,20 @@
 package com.tcp.trabalhopratico.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.tcp.trabalhopratico.controller.World;
 import com.tcp.trabalhopratico.controller.WorldRenderer;
 import com.tcp.trabalhopratico.helper.Assets;
@@ -16,7 +23,7 @@ import com.tcp.trabalhopratico.helper.Persistence;
 /**
  * Classe que representa a tela de jogo. Contém instâncias do Controller e exibe ao usuário
  * informações de tempo e vida restantes no jogo. É responsável por pausar o jogo e exibir a tela
- * de fim de jogo.
+ * de fim de jogo, calcular a pontuação final e salvar e receber o input do usuário.
  */
 class GameScreen extends ScreenAdapter {
     private static final int GAME_READY = 0;
@@ -25,6 +32,7 @@ class GameScreen extends ScreenAdapter {
     private static final int GAME_OVER = 3;
 
     private static final int MAX_TIME = 60;
+    private static final String DEFAULT_PLAYER_NAME = "player";
 
     private Frogger game;
 
@@ -46,8 +54,8 @@ class GameScreen extends ScreenAdapter {
     private GlyphLayout glyphLayout = new GlyphLayout();
 
     /**
-     * Construtor que inicia o jogo, instanciando o controller, iniciando o timer e o processador
-     * de gestos na tela (para movimento do sapo).
+     * Construtor que inicia o jogo, instanciando o controller, iniciando o timer e os processadores
+     * de input do usuário, um para gestos na tela e um para teclas do teclado.
      * @param game Referência ao objeto de jogo para renderização de elementos na tela.
      */
     GameScreen (Frogger game) {
@@ -69,25 +77,72 @@ class GameScreen extends ScreenAdapter {
         livesString = "LIVES: " + lastLives;
         timeString = "TIME: " + lastTime;
 
-        Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector
+        InputMultiplexer multiplexer = new InputMultiplexer();
+
+        multiplexer.addProcessor((new SimpleDirectionGestureDetector
                 (new SimpleDirectionGestureDetector.DirectionListener() {
             @Override
             public void onUp() {
-                //TODO Implementar movimento para cima do sapo
-            }
-            @Override
-            public void onRight() {
-                //TODO Implementar movimento para a direita do sapo
-            }
-            @Override
-            public void onLeft() {
-                //TODO Implementar movimento para a esquerda do sapo
+                if (state != GAME_RUNNING)
+                    return;
+                world.moveFrogUp();
             }
             @Override
             public void onDown() {
-                //TODO Implementar movimento para baixo do sapo
+                if (state != GAME_RUNNING)
+                    return;
+                world.moveFrogDown();
             }
-        }));
+            @Override
+            public void onRight() {
+                if (state != GAME_RUNNING)
+                    return;
+                world.moveFrogRight();
+            }
+            @Override
+            public void onLeft() {
+                if (state != GAME_RUNNING)
+                    return;
+                world.moveFrogLeft();
+            }
+        })));
+
+        multiplexer.addProcessor(new InputAdapter() {
+            @Override
+            public boolean keyDown(int keyCode) {
+                if (state != GAME_RUNNING)
+                    return false;
+
+                boolean result = false;
+
+                switch (keyCode) {
+                    case (Input.Keys.W):
+                    case (Input.Keys.DPAD_UP):
+                        result = true;
+                        world.moveFrogUp();
+                        break;
+                    case (Input.Keys.S):
+                    case (Input.Keys.DPAD_DOWN):
+                        result = true;
+                        world.moveFrogDown();
+                        break;
+                    case (Input.Keys.D):
+                    case (Input.Keys.DPAD_RIGHT):
+                        result = true;
+                        world.moveFrogRight();
+                        break;
+                    case (Input.Keys.A):
+                    case (Input.Keys.DPAD_LEFT):
+                        result = true;
+                        world.moveFrogLeft();
+                        break;
+                }
+
+                return result;
+            }
+        });
+
+        Gdx.input.setInputProcessor(multiplexer);
 
         Timer.schedule(new Timer.Task() {
             @Override
@@ -229,6 +284,7 @@ class GameScreen extends ScreenAdapter {
      * Atualiza o conteúdo na tela no estado READY, que é a palavra READY sobre o fundo do jogo.
      */
     private void presentReady () {
+        game.batcher.draw(Assets.headerBackground, 0, Frogger.SCREEN_HEIGHT - 48, Frogger.SCREEN_WIDTH, 48);
         game.batcher.draw(Assets.ready, Frogger.SCREEN_WIDTH / 2 - 192 / 2,
                 Frogger.SCREEN_HEIGHT / 2 - 32 / 2, 192, 32);
     }
@@ -259,6 +315,7 @@ class GameScreen extends ScreenAdapter {
      * Atualiza o conteúdo na tela no estado GAMEOVER, que é o texto GAMEOVER e a pontuação final.
      */
     private void presentGameOver () {
+        game.batcher.draw(Assets.headerBackground, 0, Frogger.SCREEN_HEIGHT - 48, Frogger.SCREEN_WIDTH, 48);
         game.batcher.draw(Assets.gameOver, Frogger.SCREEN_WIDTH / 4,
                 Frogger.SCREEN_HEIGHT / 2 - 96 / 2, 160, 96);
         glyphLayout.setText(Assets.font, scoreString);
@@ -287,9 +344,10 @@ class GameScreen extends ScreenAdapter {
      * Também prepara a string para exibição ao usuário.
      */
     private void saveScore() {
-        if (lastScore >= Persistence.highscores[4]) {
+        if (Persistence.isHighscore(lastScore)) {
             scoreString = "NEW HIGHSCORE: " + lastScore;
-            Persistence.addScore(lastScore);
+
+            Persistence.addScore(lastScore, DEFAULT_PLAYER_NAME);
             Persistence.save();
         } else {
             scoreString = "FINAL SCORE: " + lastScore;
