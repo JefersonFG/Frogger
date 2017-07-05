@@ -10,9 +10,9 @@ package com.tcp.trabalhopratico.model;
 public abstract class Automobile extends DynamicGameObject {
     private static final float UPDATE_STEP_SIZE = 71.5f;
     public static final int DIRECTION_RIGHT = 0;
-    public static final int DIRECTION_LEFT = 1;
+    static final int DIRECTION_LEFT = 1;
     int movementDirection;
-    int currentLane;
+    private int currentLane;
     private boolean canChangeLane = false;
 
     /**
@@ -24,27 +24,11 @@ public abstract class Automobile extends DynamicGameObject {
     }
 
     /**
-     * Setter de movementDirection.
-     * @param movementDirection Nova direção para a qual o automóvel deve ser mover.
-     */
-    public void setMovementDirection(int movementDirection) {
-        this.movementDirection = movementDirection;
-    }
-
-    /**
      * Getter de currentLane.
      * @return Faixa da rodovia pela qual o automóvel está se movendo.
      */
     public int getCurrentLane() {
         return currentLane;
-    }
-
-    /**
-     * Setter de currentLane.
-     * @param currentLane Nova faixa da rodovia pela qual o automóvel irá se mover.
-     */
-    public void setCurrentLane(int currentLane) {
-        this.currentLane = currentLane;
     }
 
     /**
@@ -71,7 +55,7 @@ public abstract class Automobile extends DynamicGameObject {
      * @param height Altura do objeto.
      * @param lane Faixa da rodovia pela qual o automóvel irá se mover.
      */
-    public Automobile (float x, float y, float width, float height, int lane) {
+    Automobile (float x, float y, float width, float height, int lane) {
         super(x, y, width, height);
         currentLane = lane;
     }

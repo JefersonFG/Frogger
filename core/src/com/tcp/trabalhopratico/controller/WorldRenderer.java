@@ -2,6 +2,7 @@ package com.tcp.trabalhopratico.controller;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.tcp.trabalhopratico.helper.Animation;
 import com.tcp.trabalhopratico.helper.Assets;
 import com.tcp.trabalhopratico.model.Automobile;
 import com.tcp.trabalhopratico.model.Car;
@@ -36,18 +37,18 @@ public class WorldRenderer {
      * Método que realiza a renderização dos objetos de plano de fundo e demais objetos de jogo,
      * nessa ordem.
      */
-    public void render () {
+    public void render (float deltaTime) {
         renderBackground();
-        renderObjects();
+        renderObjects(deltaTime);
     }
 
     /**
      * Renderiza objetos do primeiro plano, que são o sapo, os automóveis e os obstáculos.
      */
-    private void renderObjects () {
+    private void renderObjects (float deltaTime) {
         batch.enableBlending();
         batch.begin();
-        renderFrog();
+        renderFrog(deltaTime);
         renderAutomobiles();
         renderObstacles();
         batch.end();
@@ -68,10 +69,20 @@ public class WorldRenderer {
     /**
      * Renderiza o sapo na tela.
      */
-    private void renderFrog() {
-        // TODO Adicionar sapo atropelado
+    private void renderFrog(float deltaTime) {
         Frog frog = world.frog;
-        batch.draw(Assets.frog, frog.getPosition().x, frog.getPosition().y);
+        switch (frog.getState()) {
+            case Frog.FROG_STATE_NORMAL:
+                batch.draw(Assets.frogNormal, frog.getPosition().x, frog.getPosition().y);
+                break;
+            case Frog.FROG_STATE_HIT:
+                batch.draw(Assets.frogHit, frog.getPosition().x, frog.getPosition().y);
+                break;
+            case Frog.FROG_STATE_MOVING:
+                Animation.animateFrog(frog, deltaTime);
+                batch.draw(Assets.frogMoving, frog.getLastPosition().x, frog.getLastPosition().y);
+                break;
+        }
     }
 
     /**
