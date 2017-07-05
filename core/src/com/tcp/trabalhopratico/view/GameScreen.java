@@ -327,6 +327,7 @@ class GameScreen extends ScreenAdapter {
      * Finaliza o jogo calculando e salvando a pontuação e mudando o estado para GAME_OVER.
      */
     private void finishGame() {
+        // TODO Rever responsabilidade, deveria estar em World
         state = GAME_OVER;
         determineFinalScore();
         saveScore();

@@ -37,16 +37,17 @@ public class Persistence {
                     highscores.put(Integer.parseInt(entry[0]), entry[1]);
                 }
             } else {
-                highscores.put(100, "frogger");
-                highscores.put(95, "frogger");
-                highscores.put(90, "frogger");
-                highscores.put(85, "frogger");
-                highscores.put(80, "frogger");
-                highscores.put(75, "frogger");
-                highscores.put(70, "frogger");
-                highscores.put(65, "frogger");
-                highscores.put(60, "frogger");
-                highscores.put(55, "frogger");
+                String defaultScoreName = "frogger";
+                highscores.put(100, defaultScoreName);
+                highscores.put(95, defaultScoreName);
+                highscores.put(90, defaultScoreName);
+                highscores.put(85, defaultScoreName);
+                highscores.put(80, defaultScoreName);
+                highscores.put(75, defaultScoreName);
+                highscores.put(70, defaultScoreName);
+                highscores.put(65, defaultScoreName);
+                highscores.put(60, defaultScoreName);
+                highscores.put(55, defaultScoreName);
             }
         } catch (Throwable e) {
             // TODO Tratar erro ao carregar a pontuação
@@ -92,6 +93,8 @@ public class Persistence {
      * @param score Pontuação a ser adicionada no ranking.
      */
     public static void addScore (int score, String name) {
+        if (highscores.containsKey(score))
+            return;
         highscores.pollLastEntry();
         highscores.put(score, name);
     }
