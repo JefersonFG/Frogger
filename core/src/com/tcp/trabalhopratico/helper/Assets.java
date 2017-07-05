@@ -22,7 +22,8 @@ public class Assets {
     public static TextureRegion arrow;
     public static TextureRegion pause;
 
-    public static Texture frog;
+    public static Texture frogNormal;
+    public static Texture frogHit;
     public static Texture car;
     public static Texture truck;
     public static Texture motorcycle;
@@ -60,7 +61,8 @@ public class Assets {
         arrow = new TextureRegion(items, 0, 64, 64, 64);
         pause = new TextureRegion(items, 64, 64, 64, 64);
 
-        frog = loadTexture("frog.png");
+        frogNormal = loadTexture("frog.png");
+        frogHit = loadTexture("frog hit.png");
         car = loadTexture("car.png");
         truck = loadTexture("truck.png");
         motorcycle = loadTexture("motorcycle.png");
