@@ -24,6 +24,7 @@ public class Assets {
 
     public static Texture frogNormal;
     public static Texture frogHit;
+    public static Texture frogMoving;
     public static Texture car;
     public static Texture truck;
     public static Texture motorcycle;
@@ -63,6 +64,7 @@ public class Assets {
 
         frogNormal = loadTexture("frog.png");
         frogHit = loadTexture("frog hit.png");
+        frogMoving = loadTexture("frog moving.png");
         car = loadTexture("car.png");
         truck = loadTexture("truck.png");
         motorcycle = loadTexture("motorcycle.png");

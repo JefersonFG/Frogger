@@ -253,11 +253,11 @@ class GameScreen extends ScreenAdapter {
      * Atualiza as imagens na tela, chamando o método do controller e depois o método de atualização
      * apropriado para o estado atual da tela.
      */
-    private void draw () {
+    private void draw (float deltaTime) {
         GL20 gl = Gdx.gl;
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        renderer.render();
+        renderer.render(deltaTime);
 
         guiCam.update();
         game.batcher.setProjectionMatrix(guiCam.combined);
@@ -361,7 +361,7 @@ class GameScreen extends ScreenAdapter {
     @Override
     public void render (float delta) {
         update(delta);
-        draw();
+        draw(delta);
     }
 
     /**

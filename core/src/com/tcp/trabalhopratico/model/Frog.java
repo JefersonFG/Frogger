@@ -14,6 +14,7 @@ public class Frog extends GameObject {
     private static final int FROG_MAX_LIVES = 3;
     public static final int FROG_STATE_NORMAL = 0;
     public static final int FROG_STATE_HIT = 1;
+    public static final int FROG_STATE_MOVING = 2;
     private final Vector2 lastPosition;
     private int state;
     private int lives;
@@ -32,6 +33,14 @@ public class Frog extends GameObject {
      */
     public int getState() {
         return state;
+    }
+
+    /**
+     * Setter de state.
+     * @param state Novo estado do sapo.
+     */
+    public void setState(int state) {
+        this.state = state;
     }
 
     /**
@@ -95,8 +104,9 @@ public class Frog extends GameObject {
      * atualizando a última posição do sapo como sendo a atual.
      */
     public void confirmMove() {
-        lastPosition.x = getPosition().x;
-        lastPosition.y = getPosition().y;
+        state = FROG_STATE_MOVING;
+        //lastPosition.x = getPosition().x;
+        //lastPosition.y = getPosition().y;
     }
 
     /**
