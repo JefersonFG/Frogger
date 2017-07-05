@@ -100,13 +100,11 @@ public class Frog extends GameObject {
     }
 
     /**
-     * Método que confirma o movimento do sapo caso não tenha ocorrido uma colisão com um obstáculo,
-     * atualizando a última posição do sapo como sendo a atual.
+     * Método que atualiza o status do sapo para em movimento, para que a animação de movimento
+     * se dê início.
      */
     public void confirmMove() {
         state = FROG_STATE_MOVING;
-        //lastPosition.x = getPosition().x;
-        //lastPosition.y = getPosition().y;
     }
 
     /**
